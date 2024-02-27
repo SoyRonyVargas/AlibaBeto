@@ -1,0 +1,35 @@
+---
+import { type Producto } from '../types/Productos'
+import { type BasicResponse } from '../types/API'
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
+import { API } from '../api/index'
+
+const response = await fetch(`${API.dataUrl}/producto/query?`);
+
+console.log("response");
+
+const { data }: BasicResponse<Producto[]> = await response.json();
+
+console.log(data);
+---
+
+<Layout
+    title='Productos - Alibabeto'
+>
+    <!-- esta linea hace las columnas las clases de tailwind -->
+   <section class="grid md:grid-cols-3 gap-5 my-10">
+    
+    <!-- aqui renderizo los productos -->
+    {
+        data?.map( (producto:Producto) => (
+            <Card
+                {
+                    ...producto
+                }
+            />
+        ))
+    }
+    
+   </section>
+</Layout>
