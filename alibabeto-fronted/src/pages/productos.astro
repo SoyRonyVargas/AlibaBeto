@@ -5,7 +5,13 @@ import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 import { API } from '../api/index'
 
-const response = await fetch(`${API.dataUrl}/producto/query?`);
+const response = await fetch(`${API.dataUrl}/producto/query?`, {
+    method: 'GET'
+    body: {
+        correo: '',
+        password: '123'
+    }
+});
 
 console.log("response");
 
