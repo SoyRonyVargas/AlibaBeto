@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import useLogin from '../../hooks/useLogin'
+import WrapperApp from './WrapperApp'
+import { useStore } from '../../store'
 
 const Login = () => {
 
@@ -7,29 +10,35 @@ const Login = () => {
         password: ''
     })
 
-    let email = ''
-    const handleSubmit = async () => {
-        debugger
-        await fetch('http://localhost:3000/auth/login', {
-            method: 'POST',
-            // body: {
-            //     correo: state.correo,
-            //     password: '123'
-            // }
-        })
+    const { handleSubmit, auth } = useLogin()
 
-    }
+    // const handleSubmit = async () => {
+    //     debugger
+    //     await fetch('http://localhost:3000/auth/login', {
+    //         method: 'POST',
+    //         // body: {
+    //         //     correo: state.correo,
+    //         //     password: '123'
+    //         // }
+    //     })
+
+    // }
 
     const handleChange = (e: any) => {
         debugger
-        email = e.target.value
         setUsuario({
             ...state,
             correo: e.target.value
         })
     }
     return (
-        <>
+        <WrapperApp>
+
+            <pre>
+                {
+                    JSON.stringify(auth, null, 3)
+                }
+            </pre>
             <div className='mb-3'>
                 <label
                     className="text-gray-600 font-bold inline-block pb-2"
@@ -71,14 +80,14 @@ const Login = () => {
                 </div>
             </div>
             <div>
-                <input
+                <button
                     className="bg-alibabeto-1 w-full  pt-4 pr-5 pb-4 pl-5 rounded-md text-white font-bold cursor-pointer"
-                    type="submit"
-                    defaultValue="Iniciar Sesión"
                     onClick={handleSubmit}
-                />
+                >
+                    Iniciar Sesión
+                </button>
             </div>
-        </>
+        </WrapperApp>
 
     )
 }
