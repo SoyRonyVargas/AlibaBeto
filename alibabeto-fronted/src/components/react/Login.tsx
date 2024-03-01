@@ -72,7 +72,7 @@ const Login = () => {
             </div>
             <div>
                 <input
-                    className="bg-alibabeto-1 w-full  pt-4 pr-5 pb-4 pl-5 rounded-md text-white font-bold cursor-pointer hover:bg-[#181196]"
+                    className="bg-alibabeto-1 w-full  pt-4 pr-5 pb-4 pl-5 rounded-md text-white font-bold cursor-pointer"
                     type="submit"
                     defaultValue="Iniciar Sesión"
                     onClick={handleSubmit}
