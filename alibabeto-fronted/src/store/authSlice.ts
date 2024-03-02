@@ -2,8 +2,10 @@ import type { Auth } from '../types/auth.type'
 import { type StateCreator } from 'zustand'
 
 export interface AuthSliceStore {
-    auth: Auth | null
+    isLoading: boolean
     setAuth: (auth: Auth) => void
+    auth: Auth | null
+    clientError: string | null
 }
 
 // export const createAuthSlice: StateCreator<> = create<AuthSliceStore>()((set) => ({
@@ -14,4 +16,6 @@ export interface AuthSliceStore {
 export const createAuthSlice: StateCreator<AuthSliceStore, [], [], AuthSliceStore> = (set) => ({
     auth: null,
     setAuth: (auth: Auth) => set(() => ({ auth })),
+    clientError: null,
+    isLoading: false
 })

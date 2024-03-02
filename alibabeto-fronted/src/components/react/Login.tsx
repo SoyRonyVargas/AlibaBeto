@@ -10,7 +10,7 @@ const Login = () => {
         password: ''
     })
 
-    const { handleSubmit, auth } = useLogin()
+    const { handleSubmit, auth, onInputChange, formState } = useLogin()
 
     // const handleSubmit = async () => {
     //     debugger
@@ -49,9 +49,10 @@ const Login = () => {
                 <input
                     className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2"
                     type="email"
-                    name="email"
+                    name="correo"
                     placeholder="mehedi@jaman.com"
-                    onChange={handleChange}
+                    onChange={onInputChange}
+                    value={formState.correo}
                 />
             </div>
             <div className='mb-3'>
@@ -66,6 +67,8 @@ const Login = () => {
                     type="password"
                     name="password"
                     placeholder="******"
+                    onChange={onInputChange}
+                    value={formState.password}
                 />
             </div>
             <div className="flex flex-col mb-3">
@@ -82,7 +85,8 @@ const Login = () => {
             <div>
                 <button
                     className="bg-alibabeto-1 w-full  pt-4 pr-5 pb-4 pl-5 rounded-md text-white font-bold cursor-pointer"
-                    onClick={handleSubmit}
+                    // onClick={handleSubmit}
+                    type='submit'
                 >
                     Iniciar Sesión
                 </button>

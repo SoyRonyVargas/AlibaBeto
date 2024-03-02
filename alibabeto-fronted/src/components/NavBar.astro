@@ -1,5 +1,15 @@
+---
+import { lucia } from '../auth/lucia'
+// const user = Astro.locals;
+const { user } = await lucia.validateSession();
+
+// if (!user) {
+// 	return Astro.redirect("/login");
+// }
+---
 <nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
   <!-- logo -->
+  {JSON.stringify(user , null , 3)}
   <div class="inline-flex">
       <a class="_o6689fn" href="/"
           ><div class="hidden md:flex items-center">

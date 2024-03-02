@@ -5,25 +5,42 @@ import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 import { API } from '../api/index'
 
-const response = await fetch(`${API.dataUrl}/producto/query?`, {
-    method: 'GET'
-});
+const user = Astro.locals.user;
 
-console.log("response");
+console.log(user);
 
-const { data }: BasicResponse<Producto[]> = await response.json();
+// if (!user) {
+// 	return Astro.redirect("/login");
+// }
 
-console.log(data);
+
+
+// const response = await fetch(`${API.dataUrl}/producto/query?`, {
+//     method: 'GET'
+// });
+
+// console.log("response");
+
+// const { data }: BasicResponse<Producto[]> = await response.json();
+
+// console.log(data);
+
 ---
 
 <Layout
-    title='Productos - Alibabeto'
+title='Productos - Alibabeto'
 >
+    aqui
+    <!-- {JSON.stringify(user , null , 3)} -->
+    <pre>
+        {JSON.stringify(user , null , 3)}
+    </pre>
+    <!-- {JSON.stringify(session , null , 3)} -->
     <!-- esta linea hace las columnas las clases de tailwind -->
    <section class="grid md:grid-cols-3 gap-5 my-10">
     
     <!-- aqui renderizo los productos -->
-    {
+    <!-- {
         data?.map( (producto:Producto) => (
             <Card
                 {
@@ -31,7 +48,7 @@ console.log(data);
                 }
             />
         ))
-    }
+    } -->
     
    </section>
 </Layout>
