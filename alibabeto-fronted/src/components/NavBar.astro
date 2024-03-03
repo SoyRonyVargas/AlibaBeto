@@ -1,4 +1,6 @@
-<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
+<nav lang="es" class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
+
+
   <!-- logo -->
   <div class="inline-flex">
       <a class="_o6689fn" href="/"
@@ -17,7 +19,6 @@
   <!-- end logo -->
 
  <!-- search bar -->
-<div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2">
     <div class="inline-block">
         <div class="inline-flex items-center max-w-full">
             <button type="submit" class="flex items-center flex-grow-0 flex-shrink pl-2 relative w-96 border rounded-full px-4 py-2">
@@ -51,52 +52,176 @@
     </div>
 </div>
 <!-- end search bar -->
+<!-- Inicio del Carrito -->
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+<div x-data="{ cartOpen: false , isOpen: false }" class="bg-white">
+    <header>
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center justify-end w-full">
+                    <div class="flex sm:hidden">
+                        <button @click="isOpen = !isOpen" type="button" class="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500" aria-label="toggle menu">
+                            <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+                                <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'" class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300 z-50">
+        <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
+            <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none">
+                <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <hr class="my-3">
+        <div class="flex justify-between mt-6">
+            <div class="flex">
+                <img class="h-20 w-20 object-cover rounded" src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80" alt="">
+                <div class="mx-3">
+                    <h3 class="text-sm text-gray-600">Mac Book Pro</h3>
+                    <div class="flex items-center mt-2">
+                        <button class="text-gray-500 focus:outline-none focus:text-gray-600">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </button>
+                        <span class="text-gray-700 mx-2">2</span>
+                        <button class="text-gray-500 focus:outline-none focus:text-gray-600">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <span class="text-gray-600">20$</span>
+        </div>
+        <div class="flex justify-between mt-6">
+            <div class="flex">
+                <img class="h-20 w-20 object-cover rounded" src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80" alt="">
+                <div class="mx-3">
+                    <h3 class="text-sm text-gray-600">Mac Book Pro</h3>
+                    <div class="flex items-center mt-2">
+                        <button class="text-gray-500 focus:outline-none focus:text-gray-600">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </button>
+                        <span class="text-gray-700 mx-2">2</span>
+                        <button class="text-gray-500 focus:outline-none focus:text-gray-600">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <span class="text-gray-600">20$</span>
+        </div>
+        <div class="flex justify-between mt-6">
+            <div class="flex">
+                <img class="h-20 w-20 object-cover rounded" src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80" alt="">
+                <div class="mx-3">
+                    <h3 class="text-sm text-gray-600">Mac Book Pro</h3>
+                    <div class="flex items-center mt-2">
+                        <button class="text-gray-500 focus:outline-none focus:text-gray-600">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </button>
+                        <span class="text-gray-700 mx-2">2</span>
+                        <button class="text-gray-500 focus:outline-none focus:text-gray-600">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <span class="text-gray-600">20$</span>
+        </div>
+        <div class="mt-8">
+            <form class="flex items-center justify-center">
+                <input class="form-input w-48" type="text" placeholder="Add promocode">
+                <button class="ml-3 flex items-center px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                    <span>Apply</span>
+                </button>
+            </form>
+        </div>
+        <a class="flex items-center justify-center mt-4 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+            <span>Chechout</span>
+            <svg class="h-5 w-5 mx-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+    </div>
+    <!-- Fin del Carrito -->
 
   <!-- login -->
   <div class="flex-initial">
     <div class="flex justify-end items-center relative">
-     
+        <div class="flex-initial">
+            <div class="flex justify-end items-center relative">
+                <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none mx-4 sm:mx-0">
+                    <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
       <div class="flex mr-4 items-center">
         <a class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full" href="#">
           <div class="flex items-center relative cursor-pointer whitespace-nowrap">Bienvenido</div>
         </a>
-      <div class="block">
-          <div class="inline relative">
-              <button type="button" class="inline-flex items-center relative px-2 border rounded-full hover:shadow-lg">
-                  <div class="pl-1">
-                      <svg
-                          viewBox="0 0 32 32"
-                          xmlns="http://www.w3.org/2000/svg"
-                          aria-hidden="true"
-                          role="presentation"
-                          focusable="false"
-                          style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;"
-                      >
-                          <g fill="none" fill-rule="nonzero">
-                              <path d="m2 16h28"></path>
-                              <path d="m2 24h28"></path>
-                              <path d="m2 8h28"></path>
-                          </g>
-                      </svg>
-                  </div>
-
-                  <div class="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5">
-                      <svg
-                          viewBox="0 0 32 32"
-                          xmlns="http://www.w3.org/2000/svg"
-                          aria-hidden="true"
-                          role="presentation"
-                          focusable="false"
-                          style="display: block; height: 100%; width: 100%; fill: currentcolor;"
-                      >
-                          <path d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"></path>
-                      </svg>
-                  </div>
-              </button>
-          </div>
-      </div>
+        <div class="block">
+            <div class="inline relative">
+                <button id="dropdown-btn" type="button" class="inline-flex items-center relative px-2 border rounded-full hover:shadow-lg">
+                    <div class="pl-1">
+                        <svg
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            role="presentation"
+                            focusable="false"
+                            style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;"
+                        >
+                            <g fill="none" fill-rule="nonzero">
+                                <path d="m2 16h28"></path>
+                                <path d="m2 24h28"></path>
+                                <path d="m2 8h28"></path>
+                            </g>
+                        </svg>
+                    </div>
+        
+                    <div class="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5">
+                        <svg
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            role="presentation"
+                            focusable="false"
+                            style="display: block; height: 100%; width: 100%; fill: currentcolor;"
+                        >
+                            <path d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"></path>
+                        </svg>
+                    </div>
+                </button>
+                <!-- Aquí va el menú desplegable -->
+                <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg">
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Perfil</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Configuración</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+        
     </div>
   </div>
   <!-- end login -->
+
+  <script>
+    // Obtener referencias a los elementos del DOM
+    const dropdownBtn = document.getElementById('dropdown-btn');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    // Función para mostrar u ocultar el menú desplegable
+    function toggleDropdownMenu() {
+        dropdownMenu.classList.toggle('hidden');
+    }
+
+    // Agregar un event listener al botón para mostrar u ocultar el menú desplegable
+    dropdownBtn.addEventListener('click', toggleDropdownMenu);
+</script>
+
 </nav>
 

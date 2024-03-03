@@ -1,21 +1,38 @@
 ---
 import NavBar from '../components/NavBar.astro'
 import Footer from '../components/Footer.astro'
+import { type Producto } from '../types/Productos'
+import { type BasicResponse } from '../types/API'
+import Card from '../components/Card.astro'
+import { API } from '../api/index'
+
+const response = await fetch(`${API.dataUrl}/producto/query?`);
+
+console.log("response");
+
+const { data }: BasicResponse<Producto[]> = await response.json();
+
+console.log(data);
 ---
 
+
 <NavBar/>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
-<p>Hola</p>
+
+<!-- esta linea hace las columnas las clases de tailwind -->
+<section class="grid md:grid-cols-3 gap-5 my-10">
+    
+    <!-- aqui renderizo los productos -->
+    {
+        data?.map( (producto:Producto) => (
+
+        <a href={`/producto/${producto.id}`}>
+            <Card {...producto} />
+        </a>
+
+        ))
+    }
+    
+    
+   </section>
 <Footer/>
 
