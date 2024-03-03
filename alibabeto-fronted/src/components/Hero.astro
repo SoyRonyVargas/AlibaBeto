@@ -1,33 +1,35 @@
 
-<div class="relative grid w-full custom-background h-96 lg:h-[50rem] place-items-center">
+<div class="relative grid w-full custom-background h-96 md:h-10 lg:h-[50rem] place-items-center">
 
     <div id="default-carousel" class="relative w-full h-full" data-carousel="static">
         <!-- Carousel wrapper -->
-        <div class="relative h-full overflow-hidden rounded-lg">
+        <div class="relative h-full overflow-hidden">
              <!-- Item 1 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <div class="container h-full mx-auto flex items-center">
+            <div style="background-image: url('/Images/hero/bg-1.png'); background-size: cover;background-position: center;" class="hidden duration-700 ease-in-out" data-carousel-item>
+                <div class="container h-full mx-auto flex items-center relative">
                     <div class="grid grid-cols-2">
                         <div class="item flex items-center justify-center">
-                            <img 
+                            <!-- <img 
                                 src="/Images/hero/2.png" 
-                                class="block w-full object-cover max-w-[80%]"
+                                class="block w-full object-cover max-w-[80%] relative scale-150 -z-10 -bottom-10"
                                 alt="..."
-                            />
+                            /> -->
                         </div>
                         <div class="item flex items-center justify-center flex-col">
                             <div class="order-last mb-6 space-y-6 md:mb-0 ">
-                                <h1 class="text-4xl text-white font-bold md:text-5xl">Buy now and benefit up to <span class="text-blue-500">30% off</span></h1>
-                                <p class="text-lg">Be part of millions people around the world using tailus in modern User Interfaces.</p>
+                                <h1 class="text-4xl text-white font-bold md:text-5xl">
+                                    Laptop Gamer: Una experiencia inigualable
+                                    <!-- <span class="text-blue-500">30% off</span> -->
+                                </h1>
+                                <!-- <p class="text-lg">Be part of millions people around the world using tailus in modern User Interfaces.</p> -->
                                 <div class="flex flex-row-reverse flex-wrap justify-center gap-4 md:gap-6 md:justify-end">
-                                    <button type="button" title="Start buying" class="w-full py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600 sm:w-max">
+                                    <button 
+                                        type="button" 
+                                        title="Start buying" 
+                                        class="w-full py-3 px-6 text-center rounded-xl transition bg-red-600 shadow-xl  sm:w-max"
+                                    >
                                         <span class="block text-white font-semibold">
-                                            Start buying
-                                        </span>
-                                    </button>
-                                    <button type="button" title="more about" class="w-full order-first py-3 px-6 text-center rounded-xl bg-gray-100 transition hover:bg-gray-200 active:bg-gray-300 focus:bg-gray-200 sm:w-max">
-                                        <span class="block text-gray-600 font-semibold">
-                                            More about
+                                            Ver Laptops
                                         </span>
                                     </button>
                                 </div>
@@ -37,8 +39,38 @@
                 </div>
             </div>
             <!-- Item 2 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="https://store-images.s-microsoft.com/image/apps.26095.14330850369313893.ecf17f37-f6d5-45ad-a672-ba577afb2974.a654d155-2b9c-4d8d-b3a7-d5c5b305a79a?q=90&w=480&h=270" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <div  style="background-image: url('/Images/hero/bg-2.png'); background-size: cover;background-position: center;" class="hidden duration-700 ease-in-out" data-carousel-item>
+                <div class="container h-full mx-auto flex items-center relative">
+                    <div class="grid grid-cols-2">
+                        <div class="item flex items-center justify-center">
+                            <!-- <img 
+                                src="/Images/hero/3.png" 
+                                class="block w-full object-cover max-w-[80%] relative scale-125 -z-30 -bottom-10"
+                                alt="..."
+                            /> -->
+                        </div>
+                        <div class="item flex items-center justify-center flex-col">
+                            <div class="order-last mb-6 space-y-6 md:mb-0 ">
+                                <h1 class="text-4xl text-white font-bold md:text-5xl">
+                                    Laptop Gamer: Una experiencia inigualable
+                                    <!-- <span class="text-blue-500">30% off</span> -->
+                                </h1>
+                                <!-- <p class="text-lg">Be part of millions people around the world using tailus in modern User Interfaces.</p> -->
+                                <div class="flex flex-row-reverse flex-wrap justify-center gap-4 md:gap-6 md:justify-end">
+                                    <button 
+                                        type="button" 
+                                        title="Start buying" 
+                                        class="w-full py-3 px-6 text-center rounded-xl transition bg-red-600 shadow-xl  sm:w-max"
+                                    >
+                                        <span class="block text-white font-semibold">
+                                            Ver Laptops
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Item 3 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
@@ -85,7 +117,7 @@
 <style>
     .custom-background
     {
-        background: url('/Images/hero/background.svg');
+        /* background: url('/Images/hero/background.svg'); */
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

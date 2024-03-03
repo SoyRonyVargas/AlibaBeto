@@ -25,9 +25,11 @@ const ProductosSlider: FC<Props> = ({ productos = [] }) => {
             <h2 className="text-5xl font-bold mb-10">Celulares</h2>
             <div className="grid grid-cols-4 gap-4">
                 {/* <Flicking renderOnlyVisible={true} align={false} circular={true}> */}
-                {panels.map((_, index) =>
+                {productos.map((_, index) =>
                     <div style={{ border: "1px solid #fff" }} className="flicking-panel border-black w-[100%] border-1 " key={index}>
-                        <ProductoSliderItem />
+                        <ProductoSliderItem
+                            {..._}
+                        />
                     </div>
                 )}
                 {/* </Flicking> */}

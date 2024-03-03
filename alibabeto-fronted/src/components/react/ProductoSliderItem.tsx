@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { type FC } from 'react'
+import type { Producto } from '../../types/Productos'
 
-const ProductoSliderItem = () => {
+const ProductoSliderItem: FC<Producto> = ({
+    codigo,
+    descripcion,
+    precio,
+    id,
+    imagen
+}) => {
     return (
-        <div className="w-[100%] mx-auto bg-white shadow rounded-xl">
+        <a href={`/producto/${id}`} className="block w-[100%] mx-auto bg-white shadow rounded-xl">
             <div
                 className="h-48 w-full rounded-xl bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center"
                 style={{
-                    backgroundImage:
-                        'url("https://images.pexels.com/photos/7989741/pexels-photo-7989741.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")'
+                    backgroundImage: `url(${imagen})`
                 }}
             >
                 <div>
@@ -18,11 +24,15 @@ const ProductoSliderItem = () => {
             </div>
             <div className="p-4 flex flex-col items-center">
                 <p className="text-gray-400 font-light text-xs text-center">
-                    Hammond robotics
+                    {codigo}
                 </p>
-                <h1 className="text-gray-800 text-center mt-1">Item name</h1>
-                <p className="text-center text-gray-800 mt-1">1299</p>
-                <button className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-center justify-center">
+                <h1 className="text-gray-800 text-center mt-1">
+                    {codigo}
+                </h1>
+                <p className="text-center text-gray-800 mt-1">
+                    {`$${precio}`}
+                </p>
+                {/* <button className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-center justify-center">
                     Agregar al carrito
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +48,7 @@ const ProductoSliderItem = () => {
                             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                         />
                     </svg>
-                </button>
+                </button> */}
                 {/* <div className="flex justify-between w-full mt-4">
                     <div className="flex items-center text-gray-500">
                         <input id="input1" type="checkbox" className="mr-2" />
@@ -67,7 +77,7 @@ const ProductoSliderItem = () => {
                     </div>
                 </div> */}
             </div>
-        </div>
+        </a>
 
     )
 }
