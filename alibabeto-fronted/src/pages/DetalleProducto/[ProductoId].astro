@@ -1,55 +1,44 @@
 ---
-import NavBar from '../components/NavBar.astro'
-import Footer from '../components/Footer.astro'
-import { type Producto } from '../types/Productos'
-import { type BasicResponse } from '../types/API'
-import { API } from '../api/index'
+import NavBar from '../../components/NavBar.astro'
+import Footer from '../../components/Footer.astro'
+import { type Producto } from '../../types/Productos'
+import { type BasicResponse } from '../../types/API'
+import { API } from '../../api/index'
+
+const { Id } = Astro.params;
+
+let filteredProduct: Producto | undefined = undefined; // Definir la variable para almacenar el producto filtrado
 
 // Realizar solicitud HTTP para obtener todos los productos
-const response = await fetch(`${API.dataUrl}/producto/query`);
+const response = await fetch(`${API.dataUrl}/producto/${Id}`);
+
+const responseData: BasicResponse<Producto> = await response.json();
 
 // Verificar si la solicitud fue exitosa
 if (response.ok) {
-    // Obtener la respuesta como JSON
-    const responseData: BasicResponse<Producto[]> = await response.json();
-    // Imprimir los datos recibidos
-    console.log(responseData);
 
-    // Filtrar los productos por ID
-    const productId = '1';
-    const filteredProduct = responseData.data.find(producto => producto.id === Number(productId));
-
-    // Verificar si se encontró el producto
-    if (filteredProduct) {
-        // Si se encontró, imprimir el producto
-        console.log('Producto encontrado:', filteredProduct);
-    } else {
+    
+    if (!responseData) {
         console.log('No se encontró ningún producto con el ID especificado.');
+        Astro.redirect('/')
     }
 } else {
     console.error('Error al obtener los productos:', response.statusText);
 }
-
-
-interface Props extends Producto{
-	
-}
-
-const { descripcion, precio, imagen } = Astro.props
 ---
 
 <NavBar/>
 <!-- component -->
-
-    <main class="my-8">
+{filteredProduct}
+<main class="my-8">
         <div class="container mx-auto px-6">
             <div class="md:flex md:items-center">
                 <div class="w-full h-64 md:w-1/2 lg:h-96">
                     <img class="h-full w-full rounded-md object-cover max-w-lg mx-auto" src="Images/Huawei11i.png" alt="Nike Air">
                 </div>
                 <div class="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
-                    <h3 class="text-gray-700 uppercase text-lg">{descripcion}</h3>
-                    <span class="text-gray-500 mt-3">{precio}</span>
+                    <h3 class="text-gray-700 uppercase text-lg">{filteredProduct?.descripcion}</h3>
+                    <span class="text-gray-500 mt-3">{filteredProduct?.precio}</span>
                     <hr class="my-3">
                     <div class="mt-2">
                         <label class="text-gray-700 text-sm" for="count">Count:</label>

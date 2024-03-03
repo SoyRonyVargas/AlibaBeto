@@ -1,7 +1,15 @@
-<nav lang="es" class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
+---
+// import { lucia } from '../auth/lucia'
+// // const user = Astro.locals;
+// const { user } = await lucia.validateSession();
 
-
+// if (!user) {
+// 	return Astro.redirect("/login");
+// }
+---
+<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
   <!-- logo -->
+  <!-- {JSON.stringify(user , null , 3)} -->
   <div class="inline-flex">
       <a class="_o6689fn" href="/"
           ><div class="hidden md:flex items-center">
@@ -22,7 +30,7 @@
     <div class="inline-block">
         <div class="inline-flex items-center max-w-full">
             <button type="submit" class="flex items-center flex-grow-0 flex-shrink pl-2 relative w-96 border rounded-full px-4 py-2">
-                <input type="text" placeholder="Buscar un producto" class="w-full bg-transparent outline-none placeholder-gray-500" style="text-align: center;">               
+                <input type="text" placeholder="Buscar un producto" class="w-full bg-transparent outline-none placeholder-gray-500 border-0 outline-none" style="text-align: center;">               
                 <div class="flex items-center justify-center absolute right-0 h-10 w-10">
                     <svg
                         viewBox="0 0 32 32"
@@ -219,7 +227,7 @@
         dropdownMenu.classList.toggle('hidden');
     }
 
-    // Agregar un event listener al botón para mostrar u ocultar el menú desplegable
+    // no beto es putoAgregar un event listener al botón para mostrar u ocultar el menú desplegable
     dropdownBtn.addEventListener('click', toggleDropdownMenu);
 </script>
 
