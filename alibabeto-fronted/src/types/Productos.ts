@@ -8,4 +8,4 @@ export interface Producto {
     existencias: number;
     CategoriaFK: number;
     CreatedDate: Date;
-  }
+}
