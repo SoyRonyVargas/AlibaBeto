@@ -22,10 +22,10 @@ const WrapperApp: FC<Props> = ({ children }) => {
 
     return (
         <div>
-            <QueryClientProvider client={queryClient}>
-                envuelto queryclient
-                {children}
-            </QueryClientProvider>
+            {/* <QueryClientProvider client={queryClient}> */}
+            {/* envuelto queryclient */}
+            {children}
+            {/* </QueryClientProvider> */}
         </div>
     )
 }
