@@ -100,15 +100,22 @@ import Container from '../components/Container.astro'
 
   <Bento  />
 
-  <Container classes="py-28">
+  <Container classes="pt-14">
     <ProductosSlider
         client:load
         productos={[]}
     />
   </Container>
 
-  <Container>
+  <Container classes="pt-14">
     <Bento2/>
+  </Container>
+
+  <Container classes="pt-14">
+    <ProductosSlider
+        client:load
+        productos={[]}
+    />
   </Container>
 
 </main>
