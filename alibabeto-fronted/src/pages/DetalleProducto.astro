@@ -5,6 +5,8 @@ import { type Producto } from '../types/Productos'
 import { type BasicResponse } from '../types/API'
 import { API } from '../api/index'
 
+
+
 // Realizar solicitud HTTP para obtener todos los productos
 const response = await fetch(`${API.dataUrl}/producto/query`);
 
@@ -17,7 +19,7 @@ if (response.ok) {
 
     // Filtrar los productos por ID
     const productId = '1';
-    const filteredProduct = responseData.data.find(producto => producto.id === Number(productId));
+   const filteredProduct = responseData.data.find(producto => producto.id === Number(productId));
 
     // Verificar si se encontró el producto
     if (filteredProduct) {
