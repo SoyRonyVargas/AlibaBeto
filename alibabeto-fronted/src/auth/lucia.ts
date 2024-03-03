@@ -1,6 +1,7 @@
 import { Mysql2Adapter } from "@lucia-auth/adapter-mysql";
 import { Lucia, TimeSpan } from "lucia";
 import mysql from "mysql2/promise";
+import type { UsuarioModel } from "../types/usuario.type";
 
 const pool = mysql.createPool({
     database: 'alibabeto',
@@ -23,8 +24,10 @@ export const lucia = new Lucia(adapter, {
 		};
 	},
 	getUserAttributes: (attributes) => {
+		delete attributes.password
 		return {
-			test: 1,
+			// test: 1,
+			// algo: 1,
 			...attributes
 			// username: attributes.username
 		};
@@ -44,8 +47,8 @@ export const lucia = new Lucia(adapter, {
 interface DatabaseSessionAttributes {
 	user_id: string;
 }
-interface DatabaseUserAttributes {
-	user_id: string;
+interface DatabaseUserAttributes extends UsuarioModel{
+	// user_id: string;
 }
 
 // IMPORTANT!

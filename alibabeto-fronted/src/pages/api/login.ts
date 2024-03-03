@@ -1,5 +1,9 @@
+import { AuthAxios } from "../../api/axios";
 import { lucia } from "../../auth/lucia";
 import type { APIContext } from "astro";
+import { type BasicResponse } from "../../types/API";
+import { type Auth } from "../../types/auth.type";
+
 export async function GET(context: APIContext): Promise<Response> {
     return new Response("Invalid password", {
         status: 400
@@ -50,11 +54,20 @@ export async function POST(context: APIContext): Promise<Response> {
             });
         }
 
-        const session = await lucia.createSession("1");
+        const { data: { data : { token , usuario } } } = await AuthAxios.post<BasicResponse<Auth>>("/auth/login", formData)
+
+        console.log("Respuesta de mi server")
+        console.log(token);
+        
+        const session = await lucia.createSession( String(usuario.id) , {
+            user_id: String(usuario.id)
+        });
 
         const sessionCookie = lucia.createSessionCookie(session.id);
 
         context.cookies.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+        
+        context.cookies.set( 'token-auth', token, sessionCookie.attributes);
         
         // await lucia.validateSession(session.id);
 

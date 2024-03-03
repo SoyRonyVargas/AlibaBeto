@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { axiosConfig } from '../api/axios'
+import { AuthAxios } from '../api/axios'
 import { useStore } from '../store'
 import type { BasicResponse } from '../types/API'
 import type { Auth } from '../types/auth.type'
+import { clientAxiosConfig } from '../api/client.api'
 
 const useLogin = () => {
 
@@ -24,23 +25,27 @@ const useLogin = () => {
       [name]: value
     });
   }
-  const handleSubmit = async () => {
+  const handleSubmit = async ( event: React.FormEvent<HTMLFormElement> ) => {
 
-    alert("Hola")
-
+    // alert("Hola")
+    event.preventDefault()
+    
     try {
 
-      const { data: { data } } = await axiosConfig.post<BasicResponse<Auth>>('/auth/login', {
-        correo: 'john.doe@example.com',
-        password: 'secreto123'
-      })
+      const formData = new FormData();
+      formData.append('correo', 'john.doe@example.com');
+      formData.append('password', 'secreto123');
+      
+      const { data: { data } } = await clientAxiosConfig.post('/api/login', formData)
+      
+      // debugger
+      
+      // setAuth({
+      //   token: data.token,
+      //   usuario: data.usuario
+      // })
 
-      debugger
-
-      setAuth({
-        token: data.token,
-        usuario: data.usuario
-      })
+      event.currentTarget.submit()
 
     }
     catch (err) {
