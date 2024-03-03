@@ -2,10 +2,15 @@
 import "@egjs/react-flicking/dist/flicking.css";
 // Or, if you have to support IE9
 import "@egjs/react-flicking/dist/flicking-inline.css";
-import { useState } from "react";
+import { useState, type FC } from "react";
 import ProductoSliderItem from "./ProductoSliderItem";
+import type { Producto } from "../../types/Productos";
 
-const ProductosSlider = () => {
+type Props = {
+    productos: Producto[]
+}
+
+const ProductosSlider: FC<Props> = ({ productos = [] }) => {
     // const settings = {
     //     dots: true,
     //     infinite: true,
@@ -20,7 +25,7 @@ const ProductosSlider = () => {
             <h2 className="text-5xl font-bold mb-10">Celulares</h2>
             <div className="grid grid-cols-4 gap-4">
                 {/* <Flicking renderOnlyVisible={true} align={false} circular={true}> */}
-                {panels.map(index =>
+                {panels.map((_, index) =>
                     <div style={{ border: "1px solid #fff" }} className="flicking-panel border-black w-[100%] border-1 " key={index}>
                         <ProductoSliderItem />
                     </div>
