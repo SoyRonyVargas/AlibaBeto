@@ -9,6 +9,8 @@ const { Id } = Astro.params;
 
 let filteredProduct: Producto | undefined = undefined; // Definir la variable para almacenar el producto filtrado
 
+
+
 // Realizar solicitud HTTP para obtener todos los productos
 const response = await fetch(`${API.dataUrl}/producto/${Id}`);
 
