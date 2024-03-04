@@ -1,66 +1,62 @@
 ---
 import Carrito from '../components/Carrito.astro'
 ---
-<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
-  <!-- logo -->
+<nav class=" bg-white w-full flex relative justify-between items-center mx-auto  h-20">
+  <div class="max-w-[1100px] container mx-auto flex items-center justify-between">
+    <!-- logo -->
   <!-- {JSON.stringify(user , null , 3)} -->
   <div class="inline-flex">
-      <a class="_o6689fn" href="/"
-          ><div class="hidden md:flex items-center">
-            <img src="../../Images/Logo.png" class="h-12" alt="Flowbite Logo">
-            <p style="font-family: Chivo, sans-serif; color: black; transform: skew(-10deg);" class="mr-4 font-bold text-lg">ALIBABETO</p>
+    <a class="_o6689fn" href="/"
+        ><div class="hidden md:flex items-center">
+          <img src="../../Images/Logo.png" class="h-12 w-12 object-cover mr-3" alt="Flowbite Logo">
+          <p style="font-family: Chivo, sans-serif; color: black; transform: skew(-10deg);" class="mr-4 font-bold text-lg">ALIBABETO</p>
+      </div>
+        <div class="flex items-center md:hidden">
+            <svg width="30" height="32" fill="currentcolor" style="display: block">
+              <img src="Images/Logo.png" class="h-12" alt="Flowbite Logo"> </svg>
         </div>
-          <div class="block md:hidden">
-              <svg width="30" height="32" fill="currentcolor" style="display: block">
-                <img src="Images/Logo.png" class="h-12" alt="Flowbite Logo"> </svg>
-          </div>
-      </a>
-      
-  </div>
-
-  <!-- end logo -->
- <!-- search bar -->
-    <div class="inline-block">
-        <div class="inline-flex items-center max-w-full">
-            <button type="submit" class="flex items-center flex-grow-0 flex-shrink pl-2 relative w-96 border rounded-full px-4 py-2">
-                <input type="text" placeholder="Buscar un producto" class="w-full bg-transparent outline-none placeholder-gray-500 border-0 outline-none" style="text-align: center;">               
-                <div class="flex items-center justify-center absolute right-0 h-10 w-10">
-                    <svg
-                        viewBox="0 0 32 32"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                        role="presentation"
-                        focusable="false"
-                        style="
-                            display: block;
-                            fill: none;
-                            height: 16px;
-                            width: 16px;
-                            stroke: currentcolor;
-                            stroke-width: 5.33333;
-                            overflow: visible;
-                        "
-                    >
-                        <g fill="none">
-                            <path
-                                d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
-                            ></path>
-                        </g>
-                    </svg>
-                </div>
-            </button>
-        </div>
-    </div>
+    </a>
+    
 </div>
-<!-- end search bar -->
 
-
-  <!-- login -->
+<!-- end logo -->
+<!-- search bar -->
+  <div class="hidden md:inline-block">
+      <div class="inline-flex items-center max-w-full">
+          <button type="submit" class="flex items-center flex-grow-0 flex-shrink pl-2 relative w-96 border rounded-full px-4 py-1 outline-none">
+              <input type="text" placeholder="Buscar un producto" class="w-full bg-transparent outline-none placeholder-gray-500 border-0 " style="text-align: center;">               
+              <div class="flex items-center justify-center absolute right-0 h-10 w-10">
+                  <svg
+                      viewBox="0 0 32 32"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      role="presentation"
+                      focusable="false"
+                      style="
+                          display: block;
+                          fill: none;
+                          height: 16px;
+                          width: 16px;
+                          stroke: currentcolor;
+                          stroke-width: 5.33333;
+                          overflow: visible;
+                      "
+                  >
+                      <g fill="none">
+                          <path
+                              d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
+                          ></path>
+                      </g>
+                  </svg>
+              </div>
+          </button>
+      </div>
+  </div>
   <div class="flex-initial">
     <div class="flex justify-end items-center relative">
         <Carrito/>
       <div class="flex mr-4 items-center">
-        <a class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full" href="#">
+        <a class="hidden md:inline-block py-2 px-3 hover:bg-gray-200 rounded-full" href="#">
           <div class="flex items-center relative cursor-pointer whitespace-nowrap">Bienvenido</div>
         </a>
         <div class="block">
@@ -108,5 +104,12 @@ import Carrito from '../components/Carrito.astro'
     </div>
   </div>
   <!-- end login -->
+    </div>
+</div>
+<!-- end search bar -->
+
+
+<!-- login -->
+
 </nav>
 
