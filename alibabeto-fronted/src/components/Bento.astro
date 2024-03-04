@@ -1,11 +1,11 @@
 ---
 import Container from '../components/Container.astro'
 ---
-<Container background="rgba(36,155,255,.16)" classes='py-28'>
+<Container background="rgba(36,155,255,.16)" classes='py-14'>
    
-    <h2 class="mx-auto text-5xl text-center mb-10 font-semibold">Categorias</h2>
+    <!-- <h2 class="mx-auto text-5xl text-center mb-10 font-semibold">Categorias</h2> -->
 
-    <section class="grid auto-rows-[350px] grid-cols-1 md:grid-cols-4 gap-4">
+    <section class="item-bento-container grid auto-rows-[350px] grid-cols-1 md:grid-cols-4 gap-4">
     
         <div
           class={`item-bento row-span-1 rounded-xl border-1 relative flex-wrap border-slate-400/10 bg-neutral-100 dark:bg-neutral-900`}
@@ -138,5 +138,27 @@ import Container from '../components/Container.astro'
     {
         transform: scale(1.2);
         background-color: red;
+    }
+
+    @media (width < 480px)
+    {
+        .item-bento-container 
+        {
+            grid-auto-rows: 450px;
+        }
+        .item-bento
+        {
+            grid-column-start: 1;
+            grid-column-end: 2;
+        }
+        .item-bento.col-span-2 > img
+        {
+            /* height: 279px; */
+            object-fit: cover;
+        }
+        .item-bento > img
+        {
+            width: 100%;
+        }
     }
 </style>

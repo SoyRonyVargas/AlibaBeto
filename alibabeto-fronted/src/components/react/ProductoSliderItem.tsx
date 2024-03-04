@@ -11,7 +11,7 @@ const ProductoSliderItem: FC<Producto> = ({
 
     function formatarComoMonedaMexicana(valor: number): string {
         // Opciones de formato para moneda mexicana
-        const opcionesDeFormato = {
+        const opcionesDeFormato: Intl.NumberFormatOptions = {
             style: 'currency',
             currency: 'MXN'
         };
@@ -66,8 +66,8 @@ const ProductoSliderItem: FC<Producto> = ({
                     <span className="text-3xl font-bold text-gray-900 dark:text-white">
                         {formatarComoMonedaMexicana(precio)}
                     </span>
-                    <a className="block text-white bg-alibabeto-1 w-full mt-3 font-medium rounded-md text-xs px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Agregar al carrito
+                    <a href={`/producto/${id}`} className="block text-white bg-alibabeto-1 w-full mt-3 font-medium rounded-md text-xs px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Comprar
                     </a>
                 </div>
             </div>

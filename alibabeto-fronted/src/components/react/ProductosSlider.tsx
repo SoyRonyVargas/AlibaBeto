@@ -8,9 +8,10 @@ import type { Producto } from "../../types/Productos";
 
 type Props = {
     productos: Producto[]
+    titulo: string
 }
 
-const ProductosSlider: FC<Props> = ({ productos = [] }) => {
+const ProductosSlider: FC<Props> = ({ productos = [], titulo = "" }) => {
     // const settings = {
     //     dots: true,
     //     infinite: true,
@@ -22,7 +23,9 @@ const ProductosSlider: FC<Props> = ({ productos = [] }) => {
 
     return (
         <>
-            <h2 className="text-5xl font-bold mb-10">Celulares</h2>
+            <h2 className="text-5xl font-bold mb-10">
+                {titulo}
+            </h2>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-4 gap-4">
                 {/* <Flicking renderOnlyVisible={true} align={false} circular={true}> */}
                 {productos.map((_, index) =>

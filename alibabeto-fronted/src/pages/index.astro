@@ -1,15 +1,19 @@
 ---
-import NavBar from "../components/NavBar.astro";
-import Footer from "../components/Footer.astro";
-import Hero from "../components/Hero.astro";
-import GlobalStyles from "../components/GlobalStyles.astro";
 import ProductosSlider from '../components/react/ProductosSlider'
-import Bento from '../components/Bento.astro'
-import Bento2 from '../components/Bento2.astro'
+import GlobalStyles from "../components/GlobalStyles.astro"
+import BlogSection from '../components/BlogSection.astro'
+import MetodosPago from '../components/MetodosPago.astro'
+import MetodosPago1 from '../components/MetodosPago1.astro'
 import Container from '../components/Container.astro'
+import NavBar from "../components/NavBar.astro"
+import Footer from "../components/Footer.astro"
+import Bento2 from '../components/Bento2.astro'
+import Bento from '../components/Bento.astro'
+import Hero from "../components/Hero.astro"
 import { API } from "../api";
-import { BasicResponse } from "../types/API";
-import { Producto } from "../types/Productos";
+
+import { type BasicResponse } from "../types/API";
+import { type Producto } from "../types/Productos";
 
 const response = await fetch(`${API.dataUrl}/pages/index`, {
     method: 'GET'
@@ -17,11 +21,11 @@ const response = await fetch(`${API.dataUrl}/pages/index`, {
 
 type IndexPage = {
   celulares: Producto[]
+  audifonos: Producto[]
   laptops: Producto[]
 }
 const { data }: BasicResponse<IndexPage> = await response.json();
 ---
-
 <GlobalStyles />
 <NavBar />
 <Hero />
@@ -31,95 +35,15 @@ const { data }: BasicResponse<IndexPage> = await response.json();
         JSON.stringify( data , null , 3)
       }
     </pre> -->
-    <Container>
-        <div
-        class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20"
-      >
-        <div class="grid row-gap-8 sm:row-gap-0 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="p-8 sm:border-r">
-            <div class="max-w-md text-center">
-              <div
-                class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-16 sm:h-16"
-              >
-                <svg
-                  class="w-8 h-8 text-deep-purple-accent-400 sm:w-12 sm:h-12"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-                </svg>
-              </div>
-              <h6 class="mb-2 font-semibold leading-5">The quick fox</h6>
-              <p class="mb-3 text-sm text-gray-900">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium rem aperiam, eaque ipsa quae. Sit error voluptatem.
-              </p>
-            </div>
-          </div>
-          <div class="p-8 lg:border-r">
-            <div class="max-w-md text-center">
-              <div
-                class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-16 sm:h-16"
-              >
-                <svg
-                  class="w-8 h-8 text-deep-purple-accent-400 sm:w-12 sm:h-12"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-                </svg>
-              </div>
-              <h6 class="mb-2 font-semibold leading-5">Leverage agile</h6>
-              <p class="mb-3 text-sm text-gray-900">
-                Storage shed, troughs feed bale manure, is garden wheat oats at
-                augers. Bulls at rose garden cucumbers mice sunflower wheat in pig.
-              </p>
-            </div>
-          </div>
-          <div class="p-8 sm:border-r lg:border-r-0">
-            <div class="max-w-md text-center">
-              <div
-                class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-16 sm:h-16"
-              >
-                <svg
-                  class="w-8 h-8 text-deep-purple-accent-400 sm:w-12 sm:h-12"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-                </svg>
-              </div>
-              <h6 class="mb-2 font-semibold leading-5">Organically grow</h6>
-              <p class="mb-3 text-sm text-gray-900">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium rem aperiam, eaque ipsa quae. Sit error voluptatem.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Container>
+    
+  <MetodosPago/>
 
   <Bento  />
 
   <Container classes="pt-14">
     <ProductosSlider
         client:load
+        titulo="Celulares"
         productos={data.celulares}
     />
   </Container>
@@ -131,50 +55,59 @@ const { data }: BasicResponse<IndexPage> = await response.json();
   <Container classes="pt-7">
     <ProductosSlider
         client:load
+        titulo="Laptops"
         productos={data.laptops}
     />
   </Container>
 
-  <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-    <div class="max-w-lg sm:text-center sm:mx-auto">
-      <a href="/" aria-label="Go Home" title="Logo" class="inline-block mb-4">
-        <div class="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
-          <svg class="w-10 h-10 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-            <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-          </svg>
+  <Container classes='my-8'>
+     <div class="h-64 rounded-md overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144')">
+            <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
+                <div class="px-10 max-w-xl">
+                    <h2 class="text-2xl text-white font-semibold">Tenis Jezzy</h2>
+                    <button class="flex items-center mt-4 px-3 py-2 bg-alibabeto-1 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                        <span>Ver Ahora</span>
+                        <svg class="h-5 w-5 mx-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </button>
+                </div>
+            </div>
         </div>
-      </a>
-      <h2 class="mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-        <span class="relative inline-block">
-          <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-32 lg:-mt-10 sm:block">
-            <defs>
-              <pattern id="6b0188f3-b7a1-4e9b-b95e-cad916bb3042" x="0" y="0" width=".135" height=".30">
-                <circle cx="1" cy="1" r=".7"></circle>
-              </pattern>
-            </defs>
-            <rect fill="url(#6b0188f3-b7a1-4e9b-b95e-cad916bb3042)" width="52" height="24"></rect>
-          </svg>
-          <span class="relative bg-white">The</span>
-        </span>
-        quick, brown fox jumps over a lazy dog
-      </h2>
-      <p class="text-base text-gray-700 md:text-lg">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.
-      </p>
-      <hr class="my-8 border-gray-300" />
-      <div class="flex items-center mb-3 sm:justify-center">
-        <a href="/" class="mr-3 transition duration-300 hover:shadow-lg">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/1000px-Download_on_the_App_Store_Badge.svg.png" class="object-cover object-top w-32 mx-auto" alt="" />
-        </a>
-        <a href="/" class="transition duration-300 hover:shadow-lg">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1000px-Google_Play_Store_badge_EN.svg.png" class="object-cover object-top w-32 mx-auto" alt="" />
-        </a>
-      </div>
-      <p class="max-w-xs text-xs text-gray-600 sm:text-sm sm:max-w-sm sm:mx-auto">
-        Sed ut unde omnis iste natus accusantium doloremque laudantium omnis iste.
-      </p>
+  </Container>
+
+  <Container classes="mt-8 mb-14">
+    <ProductosSlider
+        client:load
+        titulo="Audifonos"
+        productos={data.audifonos}
+    />
+  </Container>
+
+  <Container>
+    <MetodosPago1/>
+  </Container>
+
+  <section class="bg-[#013695] dark:bg-gray-900">
+    <div class="container px-4 py-16 mx-auto lg:flex lg:items-center lg:justify-between">
+        <h2 class="text-2xl font-semibold tracking-tight text-white xl:text-3xl dark:text-white">
+          Suscríbete a nuestro newsletter
+        </h2>
+
+        <div class="mt-8 lg:mt-0">
+            <div class="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:-mx-2">
+                <input 
+                  id="email" 
+                  type="text" 
+                  class="px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-lg sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" 
+                  placeholder="Correo electronico..."
+                />
+
+                <button class="px-6 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg focus:ring focus:ring-blue-300 focus:ring-opacity-80 fo sm:mx-2 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                  Suscribirme
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
+</section>
 
 </main>
 
