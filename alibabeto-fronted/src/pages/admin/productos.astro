@@ -2,7 +2,6 @@
 import { type Producto } from "../../types/Productos";
 import { type BasicResponse } from "../../types/API";
 import { API } from "../../api/index";
-import Dashboard from "../../components/Dashboard";
 import Button from "../../components/BotonCrear.astro";
 import LayoutAdmin from "../../layouts/LayoutAdmin.astro";
 
@@ -22,12 +21,12 @@ const response = await fetch(`${API.dataUrl}/producto/query?`, {
 const { data }: BasicResponse<Producto[]> = await response.json();
 ---
 <LayoutAdmin>
-  {
+  <!-- {
     JSON.stringify(session)
   }
   {
     JSON.stringify(user)
-  }
+  } -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <div class="">
     <!-- esta linea hace las columnas las clases de tailwind -->
