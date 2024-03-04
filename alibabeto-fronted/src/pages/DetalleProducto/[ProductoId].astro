@@ -33,9 +33,10 @@ if (!responseData) {
 const { data }: BasicResponse<Producto[]> = await response2.json();
 
 // Supongamos que tienes una variable llamada categoriaFk que contiene la categoría a filtrar
-const categoriaFk =responseData.CategoriaFK; // Aquí debes colocar el valor de la categoría que deseas filtrar
+const categoriaFk = responseData.CategoriaFK; // Aquí debes colocar el valor de la categoría que deseas filtrar
 
 const productosFiltrados = data.filter(producto => producto.CategoriaFK === categoriaFk);
+
 ---
 
 <NavBar/>
@@ -76,7 +77,7 @@ const productosFiltrados = data.filter(producto => producto.CategoriaFK === cate
             <h3 class="text-gray-600 text-2xl font-medium">Algo mas que te podria interesar...</h3>
 
             <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-                {data.slice(0, 4).map((producto: Producto) => (
+                {productosFiltrados.slice(0, 4).map((producto: Producto) => (
                     <div class="mb-4">
                         <Sugerencias {...producto} />
                     </div>

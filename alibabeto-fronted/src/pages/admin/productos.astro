@@ -5,14 +5,11 @@ import Layout from '../../layouts/Layout.astro'
 import Card from '../../components/Card.astro'
 import { API } from '../../api/index'
 import Dashboard from '../../components/Dashboard'
+import Button from "../../components/BotonCrear.astro"
+import CrearProducto from './CrearProducto.astro'
+
 const user = Astro.locals.user;
-
-
-
-
 console.log(user);
-
-
 
 // if (!user) {
 // 	return Astro.redirect("/login");
@@ -27,6 +24,13 @@ const { data }: BasicResponse<Producto[]> = await response.json();
 <Dashboard/>
 <div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%] p-10">
     <!-- esta linea hace las columnas las clases de tailwind -->
+    <div style="margin-bottom: 10px;"></div>
+    <div style="text-align: center; margin: 0 auto; width: 300px;">
+      <a href="../../../admin/CrearProducto">
+        <Button/>
+      </a>
+  </div>
+  
    <section class="grid md:grid-cols-3 gap-5 my-10">
     <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
