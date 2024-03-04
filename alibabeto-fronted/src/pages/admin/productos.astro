@@ -4,6 +4,7 @@ import { type BasicResponse } from '../../types/API'
 import { API } from '../../api/index'
 import Dashboard from '../../components/Dashboard'
 import Button from "../../components/BotonCrear.astro"
+import LayoutAdmin from '../../layouts/LayoutAdmin.astro'
 
 
 const user = Astro.locals.user;
@@ -19,28 +20,13 @@ const response = await fetch(`${API.dataUrl}/producto/query?`, {
 
 const { data }: BasicResponse<Producto[]> = await response.json();
 
-// async function handleDelete(id: number) {
-//     try {
-//         const response = await fetch(`http://localhost:3000/producto/${id}`, {
-//             method: 'DELETE',
-//         });
-//         if (response.ok) {
-//             console.log('Producto eliminado correctamente');
-//             window.location.reload(); // Recargar la página después de la eliminación
-//         } else {
-//             const errorData = await response.json();
-//             console.error('Error al eliminar el producto:', errorData.msg);
-//         }
-//     } catch (error) {
-//         console.error('Error de red:', error);
-//     }
-// }
-
 ---
-
-<Dashboard/>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%] p-10">
+<!-- <Dashboard
+  client:load
+/> -->
+<LayoutAdmin>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="">
     <!-- esta linea hace las columnas las clases de tailwind -->
     <div style="margin-bottom: 10px;"></div>
     <div class="flex justify-start w-full">
@@ -121,3 +107,4 @@ const { data }: BasicResponse<Producto[]> = await response.json();
     b.addEventListener("click", () => handleDelete(b.getAttribute("data-id")) )
   })
 </script>
+</LayoutAdmin>

@@ -1,10 +1,32 @@
 ---
+import WrapperAdmin from '../components/react/admin/WrapperAdmin'
+import GlobalStyles from '../components/GlobalStyles.astro'
 import Dashboard from '../components/Dashboard'
+import type { UsuarioModel } from '../types/usuario.type'
+
+// const { user } = Astro.locals
+const user: UsuarioModel = {
+  id: 1,
+  nombre: "John",
+  apellidos: "Doe",
+  password: "secreto",
+  correo: "john.doe@example.com",
+  nombreUsuario: "johndoe",
+  Imagen: "perfil.jpg",
+  RolFK: 2,
+  is_deleted: 0
+};
 
 ---
-
-<Dashboard/>
-
-<div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%] p-10">
-    <slot/>
-</div>
+<WrapperAdmin 
+    user={user}
+    client:only="react"
+>
+    <GlobalStyles/>
+    <Dashboard
+        client:load
+    />
+    <div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%] p-10">
+        <slot/>
+    </div>
+</WrapperAdmin>
