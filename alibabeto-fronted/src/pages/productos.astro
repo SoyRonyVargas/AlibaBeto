@@ -4,10 +4,15 @@ import { type BasicResponse } from '../types/API'
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 import { API } from '../api/index'
-
+import Dashboard from '../components/Dashboard'
 const user = Astro.locals.user;
 
+
+
+
 console.log(user);
+
+
 
 // if (!user) {
 // 	return Astro.redirect("/login");
@@ -23,12 +28,6 @@ const { data }: BasicResponse<Producto[]> = await response.json();
 <Layout
 title='Productos - Alibabeto'
 >
-    aqui
-    <!-- {JSON.stringify(user , null , 3)} -->
-    <pre>
-        {JSON.stringify(user , null , 3)}
-    </pre>
-    <!-- {JSON.stringify(session , null , 3)} -->
     <!-- esta linea hace las columnas las clases de tailwind -->
    <section class="grid md:grid-cols-3 gap-5 my-10">
     
