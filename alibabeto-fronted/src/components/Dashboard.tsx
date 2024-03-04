@@ -24,19 +24,23 @@ const Dashboard = () => {
         </div>
         <div className="mt-8 text-center">
           <img
-            src="https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp"
+            src={auth?.usuario.Imagen}
             alt=""
             className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
           />
           <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
             {auth?.usuario.nombre}
           </h5>
-          <span className="hidden text-gray-400 lg:block">Admin</span>
+          <span className="hidden text-gray-400 lg:block">
+            {
+              auth?.usuario.Rol.nombre
+            }
+          </span>
         </div>
         <ul className="space-y-2 tracking-wide mt-8">
           <li>
             <a
-              href="#"
+              href="/admin/dashboard"
               aria-label="dashboard"
               className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400"
             >
@@ -59,7 +63,7 @@ const Dashboard = () => {
           </li>
           <li>
             <a
-              href="#"
+              href="/admin/categorias"
               className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
             >
               <svg
@@ -79,12 +83,12 @@ const Dashboard = () => {
                   d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
                 />
               </svg>
-              <span className="group-hover:text-gray-700">Categories</span>
+              <span className="group-hover:text-gray-700">Categorias</span>
             </a>
           </li>
           <li>
             <a
-              href="#"
+              href="/admin/productos"
               className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
             >
               <svg
@@ -104,12 +108,12 @@ const Dashboard = () => {
                   d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
                 />
               </svg>
-              <span className="group-hover:text-gray-700">Reports</span>
+              <span className="group-hover:text-gray-700">Productos</span>
             </a>
           </li>
           <li>
             <a
-              href="#"
+              href="/admin/pedidos"
               className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
             >
               <svg
@@ -127,12 +131,12 @@ const Dashboard = () => {
                   d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"
                 />
               </svg>
-              <span className="group-hover:text-gray-700">Other data</span>
+              <span className="group-hover:text-gray-700">Pedidos</span>
             </a>
           </li>
           <li>
             <a
-              href="#"
+              href="/admin/usuarios"
               className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
             >
               <svg
@@ -152,7 +156,7 @@ const Dashboard = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              <span className="group-hover:text-gray-700">Finance</span>
+              <span className="group-hover:text-gray-700">Usuarios</span>
             </a>
           </li>
         </ul>

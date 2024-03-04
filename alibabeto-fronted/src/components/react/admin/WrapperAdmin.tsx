@@ -12,7 +12,7 @@ const WrapperAdmin: FC<Props> = ({ user, children }) => {
 
     useEffect(() => {
 
-        alert("estado actualizado")
+        // alert("estado actualizado")
 
         setUsuario(user)
 

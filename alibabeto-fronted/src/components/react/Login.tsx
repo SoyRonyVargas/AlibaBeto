@@ -1,14 +1,8 @@
-import { useState } from 'react'
 import useLogin from '../../hooks/useLogin'
 import WrapperApp from './WrapperApp'
-import { useStore } from '../../store'
 
 const Login = () => {
 
-    const [state, setUsuario] = useState({
-        correo: '',
-        password: ''
-    })
 
     const { handleSubmit, auth, onInputChange, formState } = useLogin()
 

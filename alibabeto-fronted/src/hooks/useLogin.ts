@@ -33,7 +33,9 @@ const useLogin = () => {
     try {
 
       const formData = new FormData();
+      
       formData.append('correo', 'john.doe@example.com');
+      
       formData.append('password', 'secreto123');
       
       const { data: { data } } = await clientAxiosConfig.post('/api/login', formData)
@@ -45,7 +47,9 @@ const useLogin = () => {
       //   usuario: data.usuario
       // })
 
-      event.currentTarget.submit()
+      // event.currentTarget.submit()
+      
+      window.location.href = '/'
 
     }
     catch (err) {

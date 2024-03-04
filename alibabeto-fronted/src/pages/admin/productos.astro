@@ -1,13 +1,14 @@
 ---
-import { type Producto } from '../../types/Productos'
-import { type BasicResponse } from '../../types/API'
-import { API } from '../../api/index'
-import Dashboard from '../../components/Dashboard'
-import Button from "../../components/BotonCrear.astro"
-import LayoutAdmin from '../../layouts/LayoutAdmin.astro'
-
+import { type Producto } from "../../types/Productos";
+import { type BasicResponse } from "../../types/API";
+import { API } from "../../api/index";
+import Dashboard from "../../components/Dashboard";
+import Button from "../../components/BotonCrear.astro";
+import LayoutAdmin from "../../layouts/LayoutAdmin.astro";
 
 const user = Astro.locals.user;
+const session = Astro.locals.session;
+
 console.log(user);
 
 // if (!user) {
@@ -15,96 +16,112 @@ console.log(user);
 // }
 
 const response = await fetch(`${API.dataUrl}/producto/query?`, {
-    method: 'GET'
+  method: "GET",
 });
 
 const { data }: BasicResponse<Producto[]> = await response.json();
-
 ---
-<!-- <Dashboard
-  client:load
-/> -->
 <LayoutAdmin>
+  {
+    JSON.stringify(session)
+  }
+  {
+    JSON.stringify(user)
+  }
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<div class="">
+  <div class="">
     <!-- esta linea hace las columnas las clases de tailwind -->
     <div style="margin-bottom: 10px;"></div>
     <div class="flex justify-start w-full">
       <a href="/admin/productos/create">
-        <Button/>
+        <Button />
       </a>
     </div>
-  
-   <section class="gap-5 my-10">
-  <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-    <thead>
-      <tr>
-        <th style={{ border: '1px solid #ddd', padding: '8px' }}>id</th>
-        <th style={{ border: '1px solid #ddd', padding: '8px' }}>codigo</th>
-        <th style={{ border: '1px solid #ddd', padding: '8px' }}>descripcion</th>
-        <th style={{ border: '1px solid #ddd', padding: '8px' }}>imagen</th>
-        <th style={{ border: '1px solid #ddd', padding: '8px' }}>precio</th>
-        <th style={{ border: '1px solid #ddd', padding: '8px' }}>existencias </th>
-        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Acciones</th> {/* Añadido */}
-      </tr>
-    </thead>
-    <tbody>
-      {data?.map((producto: Producto) => (
-        <tr>
-            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
-              {producto.id}
-            </td>
-            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
-              {producto.codigo}
-            </td>
-            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
-              {producto.descripcion}
-            </td>
-            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
-              <img src={producto.imagen} class="w-20 " alt="">
-            </td>
-            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
-              ${producto.precio}
-            </td>
-            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
-              {producto.existencias}
-            </td>
-          <td style={{ border: '1px solid #ddd', padding: '8px' }}> {/* Añadido */}
-            <button data-id={producto.id} class="deletes p-3 bg-red-500 text-white font-semibold rounded-lg px-7">Eliminar</button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</section>
 
-</div>
+    <section class="gap-5 my-10">
+      <table style={{ borderCollapse: "collapse", width: "100%" }}>
+        <thead>
+          <tr>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>id</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>codigo</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}
+              >descripcion</th
+            >
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>imagen</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>precio</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}
+              >existencias
+            </th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}
+              >Acciones</th
+            >
+            {/* Añadido */}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            data?.map((producto: Producto) => (
+              <tr>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {producto.id}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {producto.codigo}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {producto.descripcion}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  <img src={producto.imagen} class="w-20 " alt="" />
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  ${producto.precio}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {producto.existencias}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {" "}
+                  {/* Añadido */}
+                  <button
+                    data-id={producto.id}
+                    class="deletes p-3 bg-red-500 text-white font-semibold rounded-lg px-7"
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+  </div>
 
-<script>
+  <script>
+    const buttons = document.querySelectorAll(".deletes");
 
-  const buttons = document.querySelectorAll(".deletes")
-
-  
-  async function handleDelete(id:any) {
-    try {
+    async function handleDelete(id: any) {
+      try {
         const response = await fetch(`http://localhost:3000/producto/${id}`, {
-            method: 'DELETE',
+          method: "DELETE",
         });
         if (response.ok) {
-            console.log('Producto eliminado correctamente');
-            window.location.reload(); // Recargar la página después de la eliminación
+          console.log("Producto eliminado correctamente");
+          window.location.reload(); // Recargar la página después de la eliminación
         } else {
-            const errorData = await response.json();
-            console.error('Error al eliminar el producto:', errorData.msg);
+          const errorData = await response.json();
+          console.error("Error al eliminar el producto:", errorData.msg);
         }
-    } catch (error) {
-        console.error('Error de red:', error);
+      } catch (error) {
+        console.error("Error de red:", error);
+      }
     }
 
-  }
-
-  buttons.forEach( b => {
-    b.addEventListener("click", () => handleDelete(b.getAttribute("data-id")) )
-  })
-</script>
+    buttons.forEach((b) => {
+      b.addEventListener("click", () =>
+        handleDelete(b.getAttribute("data-id"))
+      );
+    });
+  </script>
 </LayoutAdmin>

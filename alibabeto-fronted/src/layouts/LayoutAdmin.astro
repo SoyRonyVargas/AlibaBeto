@@ -1,21 +1,24 @@
 ---
+const user = Astro.locals.user as unknown as UsuarioModel;
+
 import WrapperAdmin from '../components/react/admin/WrapperAdmin'
 import GlobalStyles from '../components/GlobalStyles.astro'
 import Dashboard from '../components/Dashboard'
 import type { UsuarioModel } from '../types/usuario.type'
 
-// const { user } = Astro.locals
-const user: UsuarioModel = {
-  id: 1,
-  nombre: "John",
-  apellidos: "Doe",
-  password: "secreto",
-  correo: "john.doe@example.com",
-  nombreUsuario: "johndoe",
-  Imagen: "perfil.jpg",
-  RolFK: 2,
-  is_deleted: 0
-};
+// const xxx : UsuarioModel = (Astro?.locals?.user!) as unknown as UsuarioModel
+// user.
+// const user: UsuarioModel = {
+//   id: 1,
+//   nombre: "John",
+//   apellidos: "Doe",
+//   password: "secreto",
+//   correo: "john.doe@example.com",
+//   nombreUsuario: "johndoe",
+//   Imagen: "perfil.jpg",
+//   RolFK: 2,
+//   is_deleted: 0
+// };
 
 ---
 <WrapperAdmin 
