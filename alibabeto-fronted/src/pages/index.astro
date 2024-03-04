@@ -124,14 +124,14 @@ const { data }: BasicResponse<IndexPage> = await response.json();
     />
   </Container>
 
-  <Container classes="pt-14">
+  <Container classes="pt-7">
     <Bento2/>
   </Container>
 
-  <Container classes="pt-14">
+  <Container classes="pt-7">
     <ProductosSlider
         client:load
-        productos={[]}
+        productos={data.laptops}
     />
   </Container>
 
