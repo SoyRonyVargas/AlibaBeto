@@ -37,13 +37,14 @@ const { data }: BasicResponse<Producto[]> = await response.json();
 // }
 
 ---
+
 <Dashboard/>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%] p-10">
     <!-- esta linea hace las columnas las clases de tailwind -->
     <div style="margin-bottom: 10px;"></div>
     <div style="text-align: center; margin: 0 auto; width: 300px;">
-      <a href="../../../admin/CrearProducto">
+      <a href="/admin/productos/create">
         <Button/>
       </a>
     </div>
