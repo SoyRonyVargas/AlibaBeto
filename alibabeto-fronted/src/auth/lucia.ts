@@ -24,7 +24,6 @@ export const lucia = new Lucia(adapter, {
 		};
 	},
 	getUserAttributes: (attributes) => {
-		delete attributes.password
 		return {
 			// test: 1,
 			// algo: 1,
