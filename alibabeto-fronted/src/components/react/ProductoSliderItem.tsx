@@ -26,7 +26,7 @@ const ProductoSliderItem: FC<Producto> = ({
 
 
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href={`/producto/${id}`}>
+            <a href={`/DetalleProducto/${id}`}>
                 <img className="p-8 rounded-t-lg h-48 mx-auto" src={imagen} alt="product image" />
             </a>
             <div className="px-5 pb-5">
@@ -66,7 +66,7 @@ const ProductoSliderItem: FC<Producto> = ({
                     <span className="text-3xl font-bold text-gray-900 dark:text-white">
                         {formatarComoMonedaMexicana(precio)}
                     </span>
-                    <a href={`/producto/${id}`} className="block text-white bg-alibabeto-1 w-full mt-3 font-medium rounded-md text-xs px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <a href={`/DetalleProducto/${id}`} className="block text-white bg-alibabeto-1 w-full mt-3 font-medium rounded-md text-xs px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Comprar
                     </a>
                 </div>

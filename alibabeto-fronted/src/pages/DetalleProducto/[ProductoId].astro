@@ -1,4 +1,5 @@
 ---
+import type { GetStaticPaths } from "astro";
 import NavBar from '../../components/NavBar.astro'
 import Sugerencias from '../../components/Sugerencias.astro'
 import Footer from "../../components/Footer.astro"
@@ -37,6 +38,11 @@ const categoriaFk = responseData.CategoriaFK; // Aquí debes colocar el valor de
 
 const productosFiltrados = data.filter(producto => producto.CategoriaFK === categoriaFk);
 
+
+export async function getStaticPaths() {
+    
+    return [];
+}
 ---
 
 <NavBar/>
