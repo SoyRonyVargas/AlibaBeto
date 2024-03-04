@@ -16,6 +16,7 @@
     "@egjs/react-flicking": "^4.11.2",
     "@fontsource-variable/onest": "^5.0.2",
     "@lucia-auth/adapter-mysql": "^3.0.0",
+    "alpinejs": "^3.13.5",
     "astro": "^4.2.1",
     "axios": "^1.6.7",
     "cors": "^2.8.5",
@@ -27,6 +28,7 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "typescript": "^5.3.3",
+    "sweetalert2": "^11.10.5",
     "zustand": "^4.5.1"
   },
   "devDependencies": {
