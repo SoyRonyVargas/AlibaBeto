@@ -1,0 +1,60 @@
+---
+import { type Producto } from '../../types/Productos'
+import { type BasicResponse } from '../../types/API'
+import Layout from '../../layouts/Layout.astro'
+import Card from '../../components/Card.astro'
+import { API } from '../../api/index'
+import Dashboard from '../../components/Dashboard'
+const user = Astro.locals.user;
+
+
+
+
+console.log(user);
+
+
+
+// if (!user) {
+// 	return Astro.redirect("/login");
+// }
+
+const response = await fetch(`${API.dataUrl}/producto/query?`, {
+    method: 'GET'
+});
+
+const { data }: BasicResponse<Producto[]> = await response.json();
+---
+<Dashboard/>
+<div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%] p-10">
+    <!-- esta linea hace las columnas las clases de tailwind -->
+   <section class="grid md:grid-cols-3 gap-5 my-10">
+    <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+        <thead>
+          <tr>
+            <th style={{ border: '1px solid #ddd', padding: '8px' }}>id</th>
+            <th style={{ border: '1px solid #ddd', padding: '8px' }}>CategoriaID</th>
+            <th style={{ border: '1px solid #ddd', padding: '8px' }}>imagen</th>
+            <th style={{ border: '1px solid #ddd', padding: '8px' }}>codigo</th>
+            <th style={{ border: '1px solid #ddd', padding: '8px' }}>descripcion</th>
+            <th style={{ border: '1px solid #ddd', padding: '8px' }}>precio</th>
+            <th style={{ border: '1px solid #ddd', padding: '8px' }}>existencias </th>
+            <th style={{ border: '1px solid #ddd', padding: '8px' }}></th>
+          </tr>
+        </thead>
+        <tbody>
+          {data?.map((producto: Producto) => (
+            <tr key={producto.id}>
+              {Object.values(producto).map((valor, index) => (
+                <td key={index} style={{ border: '1px solid #ddd', padding: '8px' }}>
+                  {valor}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      
+
+    
+   </section>
+</div>

@@ -119,6 +119,16 @@ import Container from '../components/Container.astro'
     .item-bento
     {
         overflow: hidden;
+        position: relative;
+    }
+    .item-bento::after
+    {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.25);
+        /* z-index: 100; */
     }
     .item-bento img
     {
