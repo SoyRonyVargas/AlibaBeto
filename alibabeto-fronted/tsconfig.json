@@ -4,6 +4,8 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "typeRoots": ["./types", "./node_modules/@types"],
+    "module": "ESNext",
+    "moduleResolution": "node",
   },
   "extends": "astro/tsconfigs/strict"
 }

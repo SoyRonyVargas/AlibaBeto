@@ -6,14 +6,13 @@ export const checkToken = () : string | null => {
 
     try
     {
-        const token = getCookie("token-auth")
+        const token = window.localStorage.getItem("token-auth") ?? ""
         return token
     }
     catch(err)
     {
         console.log(err);
-        return null
-        throw new Error('Error al guardar el token')
+        return ""
     }
 
 }
