@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
-// import { SUBSCRIPTION_PEDIDO_CREADO } from '../../graphql/querys/pedidos'
 import { AuthAxios } from '../../api/axios'
-import { createClient } from 'graphql-ws';
-// import WebSocket from 'ws';
 
 const endpoint = 'ws://localhost:4000/graphql/ws'; // Ajusta la URL del servidor GraphQL-WS
 

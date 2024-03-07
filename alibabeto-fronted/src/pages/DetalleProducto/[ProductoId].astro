@@ -10,9 +10,11 @@ const { productoId } = Astro.params;
 
 // Realizar solicitud HTTP para obtener todos los productos
 const response = await fetch(`${API.dataUrl}/producto/findone/${productoId}`);
+// const response = await fetch(`http://localhost:3000/producto/findone/60`);
 
 const { data: responseData }: BasicResponse<Producto> = await response.json();
 
+console.log("responseData");
 console.log(responseData);
 
 if (!responseData) {

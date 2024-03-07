@@ -1,4 +1,4 @@
-export interface Pedido {
+export type Pedido = {
     id: number
     usuarioID?: number
     estadoPedidoID?: number
