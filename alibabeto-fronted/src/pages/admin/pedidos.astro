@@ -1,0 +1,13 @@
+---
+import DashboardPedidos from '../../components/react/admin/Dashboard/DashboardPedidos'
+import LayoutAdmin from '../../layouts/LayoutAdmin.astro'
+---
+<LayoutAdmin>
+    <div>
+        <h2 class="text-3xl font-bold mb-5">Ultimos Pedidos</h2>
+        <DashboardPedidos
+            client:load
+        />
+    </div>
+</LayoutAdmin>
+
