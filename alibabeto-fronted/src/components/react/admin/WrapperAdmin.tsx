@@ -1,6 +1,7 @@
 import { useStore } from '../../../store'
 import type { UsuarioModel } from '../../../types/usuario.type'
 import React, { useEffect, type FC } from 'react'
+import { ToastContainer } from 'react-toastify';
 
 // import Apollo from '@apollo/client/core/index.js';
 // const { ApolloProvider } = Apollo;
@@ -27,6 +28,7 @@ const WrapperAdmin: FC<Props> = ({ user, children }) => {
             {
                 children
             }
+            <ToastContainer />
         </>
     )
 }

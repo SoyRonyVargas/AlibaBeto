@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react'
-import Decimal from 'decimal.js'
-import { AuthAxios } from '../api/axios'
 import type { Producto } from '../types/Productos'
+import { useMemo, useState } from 'react'
+import { AuthAxios } from '../api/axios'
 import { useStore } from '../store'
-
+import Decimal from 'decimal.js'
+import Swal from 'sweetalert2'
+import { formatter } from '../utils/formatter'
 
 type Props = {
   maxCantidad: number
@@ -12,19 +13,26 @@ type Props = {
 
 const useProductoFicha = ({ maxCantidad = 1 , producto: { precio , id } }: Props) => {
 
-    const { totalCarrito ,  setTotalCarrito } = useStore()
+  const { totalCarrito ,  setTotalCarrito } = useStore()
+  
+  const [ cantidadProducto , setCantidadProducto ] = useState(1)
+  const [ isLoading , setLoading ] = useState(false)
 
-    const [ cantidadProducto , setCantidadProducto ] = useState(1)
-
-    const { importe } = useMemo( () => {
+    const { importe , iva , total } = useMemo( () => {
 
       const _cantidad = new Decimal(cantidadProducto)
       const _precio = new Decimal(precio)
 
       const _importe = _precio.times(_cantidad)
+      
+      const iva = _precio.times(0.16)
+
+      const _total = _importe.plus(iva)
 
       return {
-        importe: _importe
+        importe: _importe,
+        iva,
+        total: _total
       }
 
     }, [cantidadProducto])
@@ -50,20 +58,28 @@ const useProductoFicha = ({ maxCantidad = 1 , producto: { precio , id } }: Props
       try 
       {
         
-        // cantidad: number;
-        // importe: number;
-        // iva: number;
-        // total: number;
-        // productoID: number;
+        if( isLoading ) return
+
+        setLoading(true)
+        
         await AuthAxios.post("/carrito/add/producto", {
           cantidad: cantidadProducto,
           importe: importe.toNumber(),
-          iva: 0,
-          total: importe,
+          total: total.toNumber(),
+          iva: iva.toNumber(),
           productoID: id
         })
-
+        
         setTotalCarrito( totalCarrito + 1 )        
+
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        setLoading(false)
+
+        Swal.fire({
+          title: 'Articulo agregado al carrito',
+          icon: 'success'
+        })
 
       } catch (error) {
         
@@ -72,7 +88,10 @@ const useProductoFicha = ({ maxCantidad = 1 , producto: { precio , id } }: Props
     }
 
     return {
-      importe: importe.toString(),
+      isLoading,
+      importe: formatter.format(importe.toNumber()),
+      iva: formatter.format(iva.toNumber()),
+      total: formatter.format(total.toNumber()),
       cantidadProducto,
       handleDecrementCantidad,
       handleIncrementCantidad,

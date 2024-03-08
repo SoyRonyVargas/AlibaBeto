@@ -3,6 +3,7 @@ import { type BasicResponse } from '../../types/API';
 import { useEffect, useState } from 'react';
 import { AuthAxios } from '../../api/axios';
 import io from 'socket.io-client';
+import { toast } from 'react-toastify';
 
 const usePedidos = () => {
 
@@ -31,12 +32,25 @@ const usePedidos = () => {
       
         console.log('Mensaje desde el servidor:', pedido);
 
+        
         // alert("pedido nuevo")
         
         setPedidos([
           pedido.pedido,
           ...pedidos,
         ])
+
+        toast.success('Hay pedidos nuevos', {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+
     });
 
     return () => {
@@ -62,6 +76,7 @@ const usePedidos = () => {
       setLoading(false)
       
     } catch (error) {
+
       setLoading(false)
     }
 

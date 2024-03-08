@@ -1,13 +1,17 @@
 import React, { type FC } from 'react'
 import type { Producto } from '../../types/Productos'
 import useProductoFicha from '../../hooks/useProductoFicha'
+import Button from './buttons/Button'
 
 const DetalleProductoAdd: FC<Producto> = (producto) => {
 
     const { descripcion, existencias, precio } = producto
 
     const {
+        isLoading,
         importe,
+        iva,
+        total,
         cantidadProducto,
         handleIncrementCantidad,
         handleDecrementCantidad,
@@ -53,7 +57,6 @@ const DetalleProductoAdd: FC<Producto> = (producto) => {
                     </span>
                     <button
                         onClick={handleIncrementCantidad}
-                        id="incrementButton"
                         className="text-gray-500 focus:outline-none focus:text-gray-600"
                     >
                         <svg
@@ -77,14 +80,27 @@ const DetalleProductoAdd: FC<Producto> = (producto) => {
                 </label>
                 <div>
                     <p>
-                        <strong>Importe: </strong> <span>${importe}</span>
+                        <strong>Importe: </strong> <span>{importe}</span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>IVA: </strong> <span>{iva}</span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Total: </strong> <span>{total}</span>
                     </p>
                 </div>
             </div>
             <div className="flex items-center mt-6">
-                <button onClick={handleAddProductoCarrito} className="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
+                <Button
+                    isLoading={isLoading}
+                    onClick={handleAddProductoCarrito}
+                    className="w-60">
                     Agregar al carrito
-                </button>
+                </Button>
             </div>
         </div>
 

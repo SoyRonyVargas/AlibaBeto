@@ -1,13 +1,16 @@
-import type { AgregarCarrito } from '../types/carrito.type'
+import type { AgregarCarrito, ProdutoCarito } from '../types/carrito.type'
 import { type Producto } from '../types/Productos'
 import { AuthAxios } from '../api/axios'
 import { useEffect, useState } from 'react'
 import type { BasicResponse } from '../types/API'
+import Swal from 'sweetalert2'
+import { useMemo } from 'react'
+import Decimal from 'decimal.js'
 
 const useCarrito = () => {
   
     // const handleAddProducto
-    const [ carrito , setCarrito ] = useState<Producto[]>([])
+    const [ carrito , setCarrito ] = useState<ProdutoCarito[]>([])
     const [ isLoading , setIsLoading ] = useState(false)
 
     useEffect( () => {
@@ -16,11 +19,39 @@ const useCarrito = () => {
 
     } , [])
 
+    const { importe , iva , total } = useMemo( () => {
+      let importe = new Decimal(0);
+      let iva = new Decimal(0);
+      let total = new Decimal(0);
+
+    for (let articulo of carrito) {
+      const _importe = new Decimal(articulo.importe);
+      const _total = new Decimal(articulo.total);
+      const _iva = new Decimal(articulo.iva);
+    
+      // Suma los importes
+      importe = importe.plus(_importe);
+    
+      // Suma los totales
+      total = total.plus(_total);
+    
+      // Suma los valores de IVA
+      iva = iva.plus(_iva);
+    }
+
+      return {
+        importe,
+        iva,
+        total
+      }
+
+    }, [carrito])
+
     const getProductosCarrito = async () => {
 
       try {
         
-        const { data : { data } } = await AuthAxios.get<BasicResponse<Producto[]>>('/carrito')
+        const { data : { data } } = await AuthAxios.get<BasicResponse<ProdutoCarito[]>>('/carrito')
 
         console.log(data)
 
@@ -28,6 +59,34 @@ const useCarrito = () => {
         
       } catch (error) {
         throw new Error("Error")
+      }
+
+    }
+
+    const handleDeleteArticulo = async ( id: number ) => {
+
+      try {
+        
+        setIsLoading(true)
+        
+        await AuthAxios.delete<BasicResponse<ProdutoCarito[]>>(`/carrito/${id}`)
+        
+        setIsLoading(false)
+
+        getProductosCarrito()
+
+        await Swal.fire({
+          title: 'Articulo eliminado correctamente',
+          icon:"success"
+        })
+        
+      } catch (error) {
+        
+        await Swal.fire({
+          title: 'Error del servidor al eliminar el articulo',
+          icon:"error"
+        })
+
       }
 
     }
@@ -76,7 +135,12 @@ const useCarrito = () => {
         await new Promise(resolve => setTimeout(resolve, 2000));
 
         setIsLoading(false)
-        
+
+        await Swal.fire({
+          title: 'Pedido creado correctamente',
+          icon: 'success'
+        })
+
       } catch (error) {
         setIsLoading(false)
         throw new Error("Error")
@@ -84,10 +148,21 @@ const useCarrito = () => {
 
     }
 
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    });
+    
+    
     return {
-      handleSubmitCarrito,
       isLoading,
-      carrito
+      conceptos: carrito,
+      iva: formatter.format(iva.toNumber()),
+      total: formatter.format(total.toNumber()),
+      importe: formatter.format(importe.toNumber()),
+      handleSubmitCarrito,
+      handleDeleteArticulo,
     }
 }
 
