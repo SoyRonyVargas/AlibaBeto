@@ -1,8 +1,9 @@
 import type { AgregarCarrito } from '../types/carrito.type'
 import { type Producto } from '../types/Productos'
-import { AuthAxios } from '../api/axios'
-import { useEffect, useState } from 'react'
 import type { BasicResponse } from '../types/API'
+import { useEffect, useState } from 'react'
+import { AuthAxios } from '../api/axios'
+import Swal from 'sweetalert2'
 
 const useCarrito = () => {
   
@@ -76,6 +77,11 @@ const useCarrito = () => {
         await new Promise(resolve => setTimeout(resolve, 2000));
 
         setIsLoading(false)
+
+        await Swal.fire({
+          title: "¡Pedido completado!",
+          icon: "success"
+        });
         
       } catch (error) {
         setIsLoading(false)

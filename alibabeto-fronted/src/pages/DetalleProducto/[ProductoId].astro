@@ -8,9 +8,7 @@ import { API } from "../../api/index";
 
 const { productoId } = Astro.params;
 
-// Realizar solicitud HTTP para obtener todos los productos
 const response = await fetch(`${API.dataUrl}/producto/findone/${productoId}`);
-// const response = await fetch(`http://localhost:3000/producto/findone/60`);
 
 const { data: responseData }: BasicResponse<Producto> = await response.json();
 
@@ -28,7 +26,6 @@ const response2 = await fetch(`${API.dataUrl}/producto/query?`, {
 
 const { data }: BasicResponse<Producto[]> = await response2.json();
 
-// Supongamos que tienes una variable llamada categoriaFk que contiene la categoría a filtrar
 const categoriaFk = responseData.CategoriaFK; // Aquí debes colocar el valor de la categoría que deseas filtrar
 
 const productosFiltrados = data.filter(
@@ -38,23 +35,17 @@ const productosFiltrados = data.filter(
 export async function getStaticPaths() {
   return [];
 }
+
 ---
 
 <Layout title="">
   <main class="my-8">
     <div class="container mx-auto px-6">
-      <div class="md:items-center grid custom-grid gap-x-2">
-        <div class="w-full">
-          <img
-            class="max-w-[400px] rounded-md object-cover mx-auto"
-            src={responseData.imagen}
-            alt={responseData.descripcion}
-          />
-        </div>
-       <DetalleProductoAdd
-        {...responseData}
-        client:load
-       />
+      <div class="md:items-center grid custom-grid gap-x-4">
+        <DetalleProductoAdd
+          {...responseData}
+          client:only
+        />
       </div>
       <div style="margin-bottom: 50px;"></div>
       <h3 class="text-gray-600 text-2xl font-medium">
@@ -78,6 +69,6 @@ export async function getStaticPaths() {
 
 <style>
   .custom-grid {
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 55% 1fr;
   }
 </style>

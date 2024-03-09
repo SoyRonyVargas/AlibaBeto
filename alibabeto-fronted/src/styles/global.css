@@ -32,3 +32,24 @@ code {
 {
     color: #015bfb;
 }
+
+.swiper-button-next
+{
+    /* background: red;
+    position: absolute;
+    z-index: 10000000000;
+    top: 50%;
+    right: 0;
+    transform: translateY(50%); */
+}
+.swiper-button-prev,
+.swiper-button-next
+{
+    color: #FFF !important; 
+    /* background: red;
+    position: absolute;
+    z-index: 10000000000;
+    top: 50%;
+  left: 0;
+  transform: translateY(-50%); */
+}

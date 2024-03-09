@@ -1,41 +1,145 @@
 ---
-import { type Producto } from '../types/Productos'
-import { type BasicResponse } from '../types/API'
-import Layout from '../layouts/Layout.astro'
-import Card from '../components/Card.astro'
-import { API } from '../api/index'
+import ProductoSliderItem from "../components/react/ProductoSliderItem";
+import { type Producto } from "../types/Productos";
+import { type BasicResponse } from "../types/API";
+import LayoutMd from "../layouts/LayoutMd.astro";
+import { API } from "../api/index";
 
-const user = Astro.locals.user;
+// const user = Astro.locals.user;
 
-console.log(user);
+const nombreProducto = Astro.url.searchParams.get("nombre")! || undefined;
+const search = Astro.url.searchParams.get("categoria")! || undefined;
 
-// if (!user) {
-// 	return Astro.redirect("/login");
-// }
+const params: any = {
+  categoria: search,
+};
 
-const response = await fetch(`${API.dataUrl}/producto/query?`, {
-    method: 'GET'
+if (nombreProducto !== undefined) {
+  params.nombre = nombreProducto;
+}
+
+console.log(params);
+
+let query = Object.keys(params)
+  .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
+  .join("&");
+
+const url = `${API.dataUrl}/producto/query?` + query;
+
+console.log(url);
+
+const response = await fetch(url, {
+  method: "GET",
 });
 
 const { data }: BasicResponse<Producto[]> = await response.json();
+// const data = []
 ---
 
-<Layout
-title='Productos - Alibabeto'
->
-    <!-- esta linea hace las columnas las clases de tailwind -->
-   <section class="grid md:grid-cols-3 gap-5 my-10">
-    
-    <!-- aqui renderizo los productos -->
-    {
-        data?.map( (producto:Producto) => (
-            <Card
-                {
-                    ...producto
-                }
-            />
+<LayoutMd title="Productos - Alibabeto">
+  {search}
+  <!-- esta linea hace las columnas las clases de tailwind -->
+<div class="p-10">
+    <div
+        class="w-full p-6 py-4 bg-blue-50/50 border border-gray-200 rounded-lg shado mb-5 flex items-center justify-between"
+    >
+        <div class="flex items-center">
+            <div class="flex items-center mr-3">
+                <label class="font-bold mr-3">Categoria</label>
+                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Choose a country</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="FR">France</option>
+                    <option value="DE">Germany</option>
+                </select>
+            </div>
+            <div class="flex items-center">
+                <label class="font-bold mr-3">Categoria</label>
+                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Choose a country</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="FR">France</option>
+                    <option value="DE">Germany</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <button class="bg-alibabeto-1 p-2 rounded">
+                <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.1 4H5c-.5 0-.9.4-.9.9V9c0 .5.4.9.9.9h4c.5 0 .9-.4.9-.9V5c0-.5-.4-.9-.9-.9Zm10 0H15c-.5 0-.9.4-.9.9V9c0 .5.4.9.9.9h4c.5 0 .9-.4.9-.9V5c0-.5-.4-.9-.9-.9Zm-10 10H5c-.5 0-.9.4-.9.9V19c0 .5.4.9.9.9h4c.5 0 .9-.4.9-.9v-4c0-.5-.4-.9-.9-.9Zm10 0H15c-.5 0-.9.4-.9.9V19c0 .5.4.9.9.9h4c.5 0 .9-.4.9-.9v-4c0-.5-.4-.9-.9-.9Z"/>
+                  </svg>
+            </button>
+            <button class="bg-alibabeto-1 p-2 rounded">
+                <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M9 8h10M9 12h10M9 16h10M5 8h0m0 4h0m0 4h0"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+  <section class="grid custom-grid item-grid gap-4">
+    <div>
+      <h3>{nombreProducto}</h3>
+
+      <article
+        class="block max-w-sm p-6 border border-gray-200 rounded-lg bg-blue-50/50"
+      >
+        <h5
+          class="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white"
+        >
+          Categorias
+        </h5>
+        <hr class="mb-3" />
+        <ul>
+          <li class="mb-1">
+            <a href=""> Camisas</a>
+          </li>
+          <li class="mb-1">
+            <a href=""> Telefonos Y Celulares</a>
+          </li>
+          <li class="mb-1">
+            <a href=""> Laptops</a>
+          </li>
+          <li class="mb-1">
+            <a href=""> Laptops</a>
+          </li>
+          <li class="mb-1">
+            <a href=""> Laptops</a>
+          </li>
+          <li class="mb-1">
+            <a href=""> Laptops</a>
+          </li>
+          <li class="mb-1">
+            <a href=""> Laptops</a>
+          </li>
+        </ul>
+      </article>
+    </div>
+    <article
+      class="grid md:grid-cols-4 gap-5 item-grid p-6 bg-white border border-gray-200 rounded-lg shado"
+    >
+      <!-- aqui renderizo los productos -->
+      {
+        data?.map((producto: Producto) => (
+          <ProductoSliderItem
+            producto={producto}
+            tipo="secondary"
+            client:only
+          />
         ))
-    }
-    
-   </section>
-</Layout>
+      }
+    </article>
+  </section>
+</div>
+</LayoutMd>
+
+<style>
+  .custom-grid {
+    grid-template-columns: 1fr 80%;
+    /* padding: 3rem; */
+  }
+  .item-grid {
+    /* border: 1px solid; */
+  }
+</style>

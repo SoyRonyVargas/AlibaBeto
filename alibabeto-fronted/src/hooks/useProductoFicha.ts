@@ -3,6 +3,7 @@ import Decimal from 'decimal.js'
 import { AuthAxios } from '../api/axios'
 import type { Producto } from '../types/Productos'
 import { useStore } from '../store'
+import { toast } from 'react-toastify'
 
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
 
 const useProductoFicha = ({ maxCantidad = 1 , producto: { precio , id } }: Props) => {
 
+    const [ isLoading , setLoading ] = useState(false)
     const { totalCarrito ,  setTotalCarrito } = useStore()
 
     const [ cantidadProducto , setCantidadProducto ] = useState(1)
@@ -49,12 +51,16 @@ const useProductoFicha = ({ maxCantidad = 1 , producto: { precio , id } }: Props
 
       try 
       {
+
+        if( isLoading ) return
         
         // cantidad: number;
         // importe: number;
         // iva: number;
         // total: number;
         // productoID: number;
+        setLoading(true)
+        
         await AuthAxios.post("/carrito/add/producto", {
           cantidad: cantidadProducto,
           importe: importe.toNumber(),
@@ -64,6 +70,21 @@ const useProductoFicha = ({ maxCantidad = 1 , producto: { precio , id } }: Props
         })
 
         setTotalCarrito( totalCarrito + 1 )        
+        
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        setLoading(false)
+
+        toast.success('¡Articulo agregado al carrito!', {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
 
       } catch (error) {
         
@@ -72,6 +93,7 @@ const useProductoFicha = ({ maxCantidad = 1 , producto: { precio , id } }: Props
     }
 
     return {
+      isLoading,
       importe: importe.toString(),
       cantidadProducto,
       handleDecrementCantidad,

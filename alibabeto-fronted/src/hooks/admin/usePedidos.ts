@@ -1,8 +1,10 @@
 import type { Pedido } from '../../types/pedido.type';
 import { type BasicResponse } from '../../types/API';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { AuthAxios } from '../../api/axios';
 import io from 'socket.io-client';
+import { toast } from 'react-toastify';
 
 const usePedidos = () => {
 
@@ -37,6 +39,19 @@ const usePedidos = () => {
           pedido.pedido,
           ...pedidos,
         ])
+
+        toast.success('¡Pedido nuevo!', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          // transition: Bounce,
+        });
+
     });
 
     return () => {
