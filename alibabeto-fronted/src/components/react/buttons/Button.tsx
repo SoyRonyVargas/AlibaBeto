@@ -2,20 +2,41 @@ import type React from "react"
 
 type Props = {
     onClick: React.MouseEventHandler<HTMLButtonElement> | undefined
+    children?: React.ReactNode | React.ReactElement
     isLoading?: boolean
+    className?: string
     text?: string
 }
 
 const Button = ({
     isLoading = false,
     text = '',
-    onClick
+    onClick,
+    children,
+    className
 }: Props) => {
     return (
-        <button onClick={onClick} className="p-3 py-2 text-white font-semibold bg-alibabeto-1 w-full rounded-md flex items-center text-center justify-center">
+        <button
+            onClick={onClick}
+            className={
+                `
+                p-3 py-2 text-white font-semibold bg-alibabeto-1 w-full rounded-md flex items-center text-center justify-center
+                ${className}
+                `
+            }
+        >
             {
                 !isLoading
-                    ? text
+                    ?
+                    <>
+                        {
+                            text
+                                ?
+                                text
+                                :
+                                children
+                        }
+                    </>
                     :
                     <div role="status" className="mx-auto">
                         <svg aria-hidden="true" className="w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

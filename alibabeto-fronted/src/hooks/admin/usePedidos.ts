@@ -33,6 +33,7 @@ const usePedidos = () => {
       
         console.log('Mensaje desde el servidor:', pedido);
 
+        
         // alert("pedido nuevo")
         
         setPedidos([
@@ -40,8 +41,8 @@ const usePedidos = () => {
           ...pedidos,
         ])
 
-        toast.success('¡Pedido nuevo!', {
-          position: "bottom-right",
+        toast.success('Hay pedidos nuevos', {
+          position: "bottom-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -49,7 +50,6 @@ const usePedidos = () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          // transition: Bounce,
         });
 
     });
@@ -77,6 +77,7 @@ const usePedidos = () => {
       setLoading(false)
       
     } catch (error) {
+
       setLoading(false)
     }
 
