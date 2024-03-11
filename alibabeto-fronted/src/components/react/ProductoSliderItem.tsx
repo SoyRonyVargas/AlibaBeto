@@ -35,6 +35,12 @@ const ProductoSliderItem: FC<Props> = ({
         return valorFormateado;
     }
 
+    const manejarErrorDeCarga = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+        // Cambiar la fuente de la imagen alternativa en caso de error de carga
+        const target = event.target as HTMLImageElement;
+        target.src = '/Images/no_image_producto.jpg';
+    };
+
     return (
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href={`/DetalleProducto/${id}`}>
@@ -42,6 +48,7 @@ const ProductoSliderItem: FC<Props> = ({
                     className={`p-8 rounded-t-lg ${tipo === 'primary' ? 'h-48' : 'h-60'} mx-auto`}
                     src={imagen}
                     alt={`${producto.descripcion} | Alibabeto`}
+                    onError={manejarErrorDeCarga}
                 />
             </a>
             <div className="px-5 pb-5">
