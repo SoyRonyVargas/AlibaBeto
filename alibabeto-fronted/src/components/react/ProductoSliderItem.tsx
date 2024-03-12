@@ -16,6 +16,7 @@ const ProductoSliderItem: FC<Props> = ({
 
     const {
         codigo,
+        titulo,
         descripcion,
         precio,
         id,
@@ -60,7 +61,7 @@ const ProductoSliderItem: FC<Props> = ({
                     </p>
                     <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                         {
-                            descripcion
+                            titulo
                         }
                     </h5>
                 </a>

@@ -47,7 +47,7 @@ import Carrito from "../../Carrito.astro";
             <!-- Aquí va el menú desplegable -->
             <div
               id="dropdown-menu"
-              class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg"
+              class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-[100]"
             >
               <a
                 href="#"
@@ -60,7 +60,7 @@ import Carrito from "../../Carrito.astro";
                 >Configuración</a
               >
               <a
-                href="#"
+                href="/cerrar_sesion"
                 class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
                 >Cerrar Sesión</a
               >
@@ -72,3 +72,27 @@ import Carrito from "../../Carrito.astro";
     <!-- end login -->
       </div>
   </div>
+
+  <script>
+
+    let open = false
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropdownContainer = document.getElementById('dropdown-container');
+      const dropdownMenu = document.getElementById('dropdown-menu')!;
+
+      // Agregar evento de clic al botón para alternar la visibilidad del menú
+      document.getElementById('dropdown-btn')!.addEventListener('click', function () {
+        debugger
+        if( !open )
+        {
+          dropdownMenu.classList.remove('hidden');
+        }
+        else
+        {
+          dropdownMenu.classList.add('hidden');
+        }
+        open = !open
+      });
+    });
+  </script>
+
