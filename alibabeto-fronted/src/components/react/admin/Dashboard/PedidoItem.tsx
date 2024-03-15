@@ -33,6 +33,11 @@ const PedidoItem = ({ id, fechaPedido, importe, iva, total }: any) => {
             </td> */}
             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                 <strong>
+                    Activo
+                </strong>
+            </td>
+            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                <strong>
                     ${importe}
                 </strong>
             </td>
@@ -46,12 +51,12 @@ const PedidoItem = ({ id, fechaPedido, importe, iva, total }: any) => {
             </td>
             <td className="px-4 py-4 text-sm whitespace-nowrap">
                 <div className="flex items-center gap-x-6">
-                    <button className="bg-alibabeto-1 py-2 px-6 text-white rounded-lg transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                    <a href={`/admin/pedidos/${id}`} className="bg-alibabeto-1 py-2 px-6 text-white rounded-lg transition-colors duration-200 focus:outline-none">
                         Ver
-                    </button>
-                    <button className="text-white py-2 px-4 transition-colors duration-200 bg-red-500 rounded-lg hover:text-indigo-500 focus:outline-none">
+                    </a>
+                    {/* <button className="text-white py-2 px-4 transition-colors duration-200 bg-red-500 rounded-lg hover:text-indigo-500 focus:outline-none">
                         Eliminar
-                    </button>
+                    </button> */}
                 </div>
             </td>
         </tr>

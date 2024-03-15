@@ -73,9 +73,15 @@ const DashboardPedidos = () => {
                                         scope="col"
                                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                                     >
+                                        IVA
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                    >
                                         Total
                                     </th>
-                                    <th scope="col" className="relative py-3.5 px-4">
+                                    <th scope="col" className="text-left relative py-3.5 px-4">
                                         Actions
                                     </th>
                                 </tr>

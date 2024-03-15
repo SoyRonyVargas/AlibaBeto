@@ -1,7 +1,7 @@
 import type React from "react"
 
 type Props = {
-    onClick: React.MouseEventHandler<HTMLButtonElement> | undefined
+    onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
     children?: React.ReactNode | React.ReactElement
     isLoading?: boolean
     className?: string

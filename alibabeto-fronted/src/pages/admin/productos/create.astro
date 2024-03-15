@@ -1,5 +1,5 @@
 ---
-import CreateProductoForm from '../../../components/react/productos/CreateProducto'
+import CreateProductoForm from '../../../components/react/admin/productos/CreateProducto'
 import LayoutAdmin from "../../../layouts/LayoutAdmin.astro";
 ---
 
@@ -10,7 +10,7 @@ import LayoutAdmin from "../../../layouts/LayoutAdmin.astro";
             <h2 class="text-4xl mb-5 font-semibold">Crear Producto</h2>
 
             <CreateProductoForm
-                client:load
+                client:only
             />
             
         </div>

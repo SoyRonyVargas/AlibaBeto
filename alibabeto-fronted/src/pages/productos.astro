@@ -11,11 +11,15 @@ const nombreProducto = Astro.url.searchParams.get("nombre")! || undefined;
 const search = Astro.url.searchParams.get("categoria")! || undefined;
 
 const params: any = {
-  categoria: search,
+  // categoria: search,
 };
 
 if (nombreProducto !== undefined) {
   params.nombre = nombreProducto;
+}
+
+if (search !== undefined) {
+  params.categoria = search;
 }
 
 console.log(params);
@@ -117,7 +121,7 @@ const { data }: BasicResponse<Producto[]> = await response.json();
       </article>
     </div>
     <article
-      class="grid md:grid-cols-4 gap-5 item-grid p-6 bg-white border border-gray-200 rounded-lg shado"
+      class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5 item-grid p-6 bg-white border border-gray-200 rounded-lg shado"
     >
       <!-- aqui renderizo los productos -->
       {
