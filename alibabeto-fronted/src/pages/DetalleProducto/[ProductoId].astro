@@ -1,0 +1,74 @@
+---
+import DetalleProductoAdd from '../../components/react/DetalleProductoAdd'
+import Sugerencias from "../../components/Sugerencias.astro";
+import { type Producto } from "../../types/Productos";
+import { type BasicResponse } from "../../types/API";
+import Layout from "../../layouts/Layout.astro";
+import { API } from "../../api/index";
+
+const { productoId } = Astro.params;
+
+const response = await fetch(`${API.dataUrl}/producto/findone/${productoId}`);
+
+const { data: responseData }: BasicResponse<Producto> = await response.json();
+
+console.log("responseData");
+console.log(responseData);
+
+if (!responseData) {
+  console.log("No se encontró ningún producto con el ID especificado.");
+  return Astro.redirect("/");
+}
+
+const response2 = await fetch(`${API.dataUrl}/producto/query?`, {
+  method: "GET",
+});
+
+const { data }: BasicResponse<Producto[]> = await response2.json();
+
+const categoriaFk = responseData.CategoriaFK; // Aquí debes colocar el valor de la categoría que deseas filtrar
+
+const productosFiltrados = data.filter(
+  (producto) => producto.CategoriaFK === categoriaFk
+);
+
+export async function getStaticPaths() {
+  return [];
+}
+
+---
+
+<Layout title="">
+  <main class="my-8">
+    <div class="container mx-auto px-6">
+      <div class="md:items-center grid custom-grid gap-x-4">
+        <DetalleProductoAdd
+          {...responseData}
+          client:only
+        />
+      </div>
+      <div style="margin-bottom: 50px;"></div>
+      <h3 class="text-gray-600 text-2xl font-medium">
+        Algo mas que te podria interesar...
+      </h3>
+
+      <div
+        class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6"
+      >
+        {
+          productosFiltrados.slice(0, 4).map((producto: Producto) => (
+            <div class="mb-4">
+              <Sugerencias {...producto} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .custom-grid {
+    grid-template-columns: 55% 1fr;
+  }
+</style>

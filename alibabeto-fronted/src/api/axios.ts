@@ -7,16 +7,24 @@ export const AuthAxios = axios.create({
 
 AuthAxios.interceptors.request.use( ( config:any ) => {
 
-    const token = checkToken()
-
-    if( token )
+    try
     {
-        config.headers = {
-            ...config.headers,
-            'x-auth-token': token
-        }
-    }
+        const token = checkToken()
 
+        if( token )
+        {
+            config.headers = {
+                ...config.headers,
+                'x-auth-token': token
+            }
+        }
+    
+    }
+    catch
+    {
+        return config
+    }
+    
     return config
 
 })

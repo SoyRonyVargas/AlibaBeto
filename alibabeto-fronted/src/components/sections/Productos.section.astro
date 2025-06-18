@@ -1,0 +1,19 @@
+---
+import ProductosSlider from '../../components/react/ProductosSlider'
+import { type Producto } from '../../types/Productos'
+import Container from '../Container.astro'
+
+interface Props {
+    data: Producto[]
+    titulo: string
+}
+
+const { data , titulo } = Astro.props
+---
+<Container classes="py-14">
+    <ProductosSlider
+        client:load
+        titulo={titulo}
+        productos={data}
+    />
+</Container>

@@ -7,10 +7,6 @@ import { clientAxiosConfig } from '../api/client.api'
 
 const useLogin = () => {
 
-  // const { refetch , isLoading , data } = useQuery('todos', API_ENDPOINTS.auth, {
-  //     enabled: false,
-  // })
-
   const { auth, setAuth } = useStore()
 
   const [formState, setFormState] = useState({
@@ -33,22 +29,28 @@ const useLogin = () => {
     try {
 
       const formData = new FormData();
-      formData.append('correo', 'john.doe@example.com');
-      formData.append('password', 'secreto123');
       
-      const { data: { data } } = await clientAxiosConfig.post('/api/login', formData)
+      // formData.append('correo', 'john.doe@example.com');
+      // formData.append('correo', 'john.doe1@example.com');
       
-      // debugger
+      formData.append('correo', formState.correo);
       
-      // setAuth({
-      //   token: data.token,
-      //   usuario: data.usuario
-      // })
+      formData.append('password', formState.password);
+      // formData.append('password', 'secreto123');
+      
+      const { data } = await clientAxiosConfig.post('/api/login', formData)
+      
+      debugger 
 
-      event.currentTarget.submit()
+      window.localStorage.setItem("token-auth", data.token)
+      // event.currentTarget.submit()
+      
+      window.location.href = '/'
 
     }
     catch (err) {
+
+      
 
     }
 

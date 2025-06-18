@@ -5,3 +5,4 @@ declare namespace App {
 		user: import("lucia").User | null;
 	}
 }
+

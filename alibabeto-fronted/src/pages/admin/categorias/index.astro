@@ -1,0 +1,70 @@
+---
+import LayoutAdmin from "../../../layouts/LayoutAdmin.astro";
+import { API } from "../../../api";
+import type { BasicResponse } from "../../../types/API";
+import type { Producto } from "../../../types/Productos";
+import { AuthAxios } from "../../../api/axios";
+
+const { data } = await AuthAxios.get(`/categoria/all`);
+
+// const { data }: BasicResponse<Producto[]> = await response.()
+---
+
+<LayoutAdmin>
+  <section class="gap-5 my-10">
+    <table style={{ borderCollapse: "collapse", width: "100%" }}>
+      <thead>
+        <tr>
+          <th style={{ border: "1px solid #ddd", padding: "8px" }}>id</th>
+          <th style={{ border: "1px solid #ddd", padding: "8px" }}>codigo</th>
+          <th style={{ border: "1px solid #ddd", padding: "8px" }}
+            >descripcion</th
+          >
+          <th style={{ border: "1px solid #ddd", padding: "8px" }}>imagen</th>
+          <th style={{ border: "1px solid #ddd", padding: "8px" }}>precio</th>
+          <th style={{ border: "1px solid #ddd", padding: "8px" }}
+            >existencias
+          </th>
+          <th style={{ border: "1px solid #ddd", padding: "8px" }}>Acciones</th>
+          {/* Añadido */}
+        </tr>
+      </thead>
+      <tbody>
+        {
+          data?.map((producto: Producto) => (
+            <tr>
+              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                {producto.id}
+              </td>
+              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                {producto.codigo}
+              </td>
+              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                {producto.descripcion}
+              </td>
+              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                <img src={producto.imagen} class="w-20 " alt="" />
+              </td>
+              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                ${producto.precio}
+              </td>
+              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                {producto.existencias}
+              </td>
+              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                {" "}
+                {/* Añadido */}
+                <button
+                  data-id={producto.id}
+                  class="deletes p-3 bg-red-500 text-white font-semibold rounded-lg px-7"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </section>
+</LayoutAdmin>

@@ -1,12 +1,14 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
+// import { QueryClient, QueryClientProvider } from 'react-query';
 import React, { useEffect, type FC } from 'react'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useStore } from '../../store';
 
 type Props = {
     children: React.ReactNode
 }
 
-const queryClient = new QueryClient()
+// const queryClient = new QueryClient()
 
 const WrapperApp: FC<Props> = ({ children }) => {
 
@@ -15,17 +17,16 @@ const WrapperApp: FC<Props> = ({ children }) => {
     useEffect(() => {
 
         if (auth) {
-            alert("Autenticado")
+            // alert("Autenticado")
         }
 
     }, [auth])
 
     return (
         <div>
-            <QueryClientProvider client={queryClient}>
-                envuelto queryclient
-                {children}
-            </QueryClientProvider>
+            {/* envuelto queryclient */}
+            {children}
+            <ToastContainer />
         </div>
     )
 }
